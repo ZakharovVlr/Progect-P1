@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Настройки для плавного скролла и корректного расчета высоты */
+html {
+    scroll-behavior: smooth;
+    /* Запрещаем мобильным браузерам самовольно увеличивать шрифт */
+    -webkit-text-size-adjust: 100%;
+}

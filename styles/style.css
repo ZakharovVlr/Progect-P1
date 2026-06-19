@@ -1,0 +1,113 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 2. Шапка (Frame 1 — верхняя серая плашка) */
+.app-header {
+    max-width: 1300px;
+    width: 100%;
+    /* Ограничение по ширине макета */
+    background-color: #e0e0e0;
+    /* Светло-серый цвет */
+    padding: 24px 0;
+    text-align: center;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo-text {
+    font-size: 32px;
+    font-family: serif;
+    /* Шрифт с засечками, как в Progeсt-P1 */
+    color: #1a1a1a;
+    letter-spacing: 1px;
+}
+
+/* 3. Основной контейнер (Розовая подложка) */
+.app-container {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    grid-template-rows: 2fr min-content;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+/* Центрирование рабочей зоны во второй колонке */
+.workspace-row {
+    grid-column: 2 / 3;
+}
+
+/* Стили для того, чтобы холст и зона загрузки вели себя корректно внутри сетки */
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    background-color: #d9d9d9;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Левая серая панель */
+.sidebar--left {
+    width: 200px;
+    grid-column: 1;
+    grid-row: 1/2;
+    background-color: #d9d9d9;
+}
+
+/* Текст по центру рабочей зоны */
+.upload-zone {
+    color: #555;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+}
+
+/* Правая серая панель */
+.sidebar--right {
+    width: 200px;
+    grid-column: 3;
+    grid-row: 1/2;
+    background-color: #d9d9d9;
+}
+
+/* Нижняя длинная серая панель фильтров */
+.filters-panel {
+    /* Растягивает панель фильтров от 1-й до 4-й вертикальной грид-линии (на все 3 колонки) */
+    grid-column: 1 / -1;
+    height: 100px;
+    background-color: #d9d9d9;
+}
+
+/* 4. Подвал (ниже розового контейнера на белом фоне) */
+.footer {
+    width: 100%;
+    max-width: 1024px;
+    background-color: #ffffff;
+    /* Белый фон в самом низу */
+    padding: 40px 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    body {}
+}
+
+@media (max-width: 767px) {
+    body {}
+}
