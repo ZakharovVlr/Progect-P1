@@ -1,44 +1,52 @@
 'use strict'
 
-// Для Fabric.js v5
-import { fabric } from 'fabric'; 
+document.addEventListener('DOMContentLoaded', function () {
+    // здесь весь код
 
-// 1. Инициализируем холст Fabric.js
-const canvas = new fabric.Canvas('canvas');
+// 1. Инициализируем холст 
+const canvas = document.getElementById('canvas');
+// 2. Контекст для рисования
+const ctx = canvas.getContext('2d');
+// 3. Находим элемент инпута
+const fileInput = document.getElementById('image-loader');
 
-// 2. Находим элемент инпута
-const imageLoader = document.getElementById('imageLoader');
+// 4. Вешаем событие на изменение инпута (выбор файла)
+fileInput.addEventListener('change', handleFileSelect);
 
-// 3. Вешаем событие на изменение инпута (выбор файла)
-imageLoader.addEventListener('change', handleImage, false);
+function handleFileSelect(event) {
+    // Получаем файл:
+    const file = event.target.files[0];
+    //Проверяем, что файл - изображение
+    if (!file.type.startsWith('image/')) return;
 
-function handleImage(e) {
     const reader = new FileReader();
+    reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+            // 1. Вычислить масштаб так, чтобы картинка вписалась и не увеличивалась
+            const scale = Math.min(1, canvas.width / img.width, canvas.height / img.height);
 
-    // Читаем первый выбранный файл
-    const file = e.target.files[0];
+            // 2. Вычислить новые размеры
+            const newWidth = img.width * scale;
+            const newHeight = img.height * scale;
 
-    if (!file) return;
+            // 3. Вычислить смещение для центрирования
+            const offsetX = (canvas.width - newWidth) / 2;
+            const offsetY = (canvas.height - newHeight) / 2;
 
-    // Когда файл успешно прочитан...
-    reader.onload = function (event) {
-        const imgObj = new Image();
-        imgObj.src = event.target.result;
+            // 4. Очистить холст
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Когда изображение загрузилось в память...
-        imgObj.onload = function () {
-            // Создаем объект изображения Fabric.js
-            const fabricImg = new fabric.Image(imgObj);
+            // 5. Нарисовать изображение с учётом масштаба и центрирования
+            ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
 
-            // Опционально: масштабируем, если фото больше холста
-            fabricImg.scaleToWidth(300);
-
-            // Добавляем изображение на холст и обновляем его
-            canvas.add(fabricImg);
-            canvas.renderAll();
+            // 6. Скрыть зону загрузки
+            document.querySelector('.upload-zone').style.display = 'none';
         };
+        img.src = e.target.result;
     };
-
-    // Запускаем чтение файла в формате DataURL
     reader.readAsDataURL(file);
+
 }
+
+});

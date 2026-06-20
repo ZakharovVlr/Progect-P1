@@ -16,8 +16,8 @@
 
     <!-- 3. Метатеги Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="PixelCraft — Удобный фоторедактор">
-    <meta property="og:description" content="Прокачайте свои фотографии прямо в браузере с помощью PixelCraft.">
+    <meta property="og:title" content="Progect - P1 — Удобный фоторедактор">
+    <meta property="og:description" content="Прокачайте свои фотографии прямо в браузере с помощью Project - P1.">
     <meta property="og:url" content="https://github.io">
 
     <!-- Подключение стилей -->
@@ -38,18 +38,18 @@
 
         <div class="header__theme-menu">
             <!-- Кнопка автоматической темы (системная) -->
-            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_auto">
-                Авто
+            <button type="button" class="header__theme-menu-button header__theme-menu-button_active header__theme-menu-button_type_auto">
+                Auto
             </button>
         
             <!-- Кнопка светлой темы -->
             <button type="button" class="header__theme-menu-button header__theme-menu-button_type_light">
-                День
+                Day
             </button>
         
             <!-- Кнопка ночной темы -->
-            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_dark">
-                Ночь
+            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_dark header__theme-menu-button_active">
+                Night
             </button>
         </div>
 
@@ -61,20 +61,26 @@
         <!-- Левая панель с кнопками -->
         <aside class="sidebar sidebar--left">
             <!-- Кнопки будут здесь -->
+            <ul class="sidebar__list">
+                <li><button class="sidebar__button" aria-label="Действие 1">•</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 2">•</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 3">•</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 4">•</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 5">•</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 6">•</button></li>
+                <!-- ... -->
+            </ul>
         </aside>
 
         <!-- Центральная рабочая зона -->
         <div class="workspace-row">
             <main class="canvas-zone">
-                <div class="canvas-wrapper" id="drop-zone">
-                    <!-- Текст-кнопка для загрузки -->
+                <div class="canvas-wrapper" id="dropZone">
+                    <canvas id="canvas" class="canvas" width="800" height="700"></canvas>
                     <div class="upload-zone">
+                        <label for="image-loader" class="upload-button">Выбрать изображение</label>
+                        <p>или перетащите сюда</p>
                         <input type="file" id="image-loader" accept="image/*" class="visually-hidden">
-                    </div>
-
-                    <!-- Холст для редактора -->
-                    <div class="canvas-wrapper" id="drop-zone">
-                        <canvas id="canvas" class="canvas" width="800" height="700"></canvas>
                     </div>
                 </div>
             </main>

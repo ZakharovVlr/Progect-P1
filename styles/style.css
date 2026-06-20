@@ -9,6 +9,9 @@ body {
 
 /* 2. Шапка (Frame 1 — верхняя серая плашка) */
 .app-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     max-width: 1300px;
     width: 100%;
     /* Ограничение по ширине макета */
@@ -20,18 +23,35 @@ body {
 }
 
 .logo-link {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
     text-decoration: none;
 }
 
 .logo-text {
+    display: inline-block;
+    font-family: 'Bitcount Single', sans-serif;
     font-size: 32px;
-    font-family: serif;
-    /* Шрифт с засечками, как в Progeсt-P1 */
-    color: #1a1a1a;
+    color: #ffffff;
     letter-spacing: 1px;
 }
 
+.logo-text::first-letter {
+    font-family: 'Bitcount Grid Double', sans-serif;
+    font-size: 40px;
+}
+/*! сделаем радио кнопки */
+.header__theme-menu {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+}
+
 .header__theme-menu-button {
+    font-family: 'Bitcount Single', sans-serif;
     padding: 5px 16px;
     background-color: var(--color-header);
     border: 1px solid var(--border-color-header);
@@ -39,6 +59,11 @@ body {
 }
 
 .header__theme-menu-button:hover {
+    border: 1px solid var(--border-color-hover);
+    color: var(--color-text-header-hover);
+}
+
+.header__theme-menu-button:active {
     border: 1px solid var(--border-color-hover);
     color: var(--color-text-header-hover);
 }
@@ -78,9 +103,30 @@ body {
 
 
 .sidebar {
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(4, min-content);
+    grid-template-rows: min-content;
     background-color: var(--color-sidebar);
+    padding: 5px;
+}
+.sidebar__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: contents;
+    /* Чтобы li не влияли на грид-раскладку */
 }
 
+.sidebar__item {
+    display: contents;
+}
+
+.sidebar__button {
+    width: 45px;
+    height: 45px;
+    background-color: aqua;
+}
 /* Левая серая панель */
 .sidebar--left {
     width: 200px;
