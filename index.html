@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="theme-auto">
 
 <head>
     <!-- 1. Технические метатеги -->
@@ -12,7 +12,7 @@
         content="Бесплатный и быстрый веб-фоторедактор. Обрезайте изображения, применяйте фильтры и редактируйте фото прямо в браузере.">
     <meta name="keywords" content="фоторедактор, обработка фото, canvas, javascript, редактор изображений онлайн">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="Ваше Имя / Студент Яндекс Практикума">
+    <meta name="author" content="Zakharov Valery / Студент Яндекс Практикума">
 
     <!-- 3. Метатеги Open Graph -->
     <meta property="og:type" content="website">
@@ -21,9 +21,10 @@
     <meta property="og:url" content="https://github.io">
 
     <!-- Подключение стилей -->
-    <link rel="stylesheet" href="styles/fonts.css">
+    <link rel="stylesheet" href="fonts/fonts.css">
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/light-theme.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -34,6 +35,24 @@
         <a href="/" class="logo-link">
             <span class="logo-text">Progect - P1</span>
         </a>
+
+        <div class="header__theme-menu">
+            <!-- Кнопка автоматической темы (системная) -->
+            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_auto">
+                Авто
+            </button>
+        
+            <!-- Кнопка светлой темы -->
+            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_light">
+                День
+            </button>
+        
+            <!-- Кнопка ночной темы -->
+            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_dark">
+                Ночь
+            </button>
+        </div>
+
     </header>
 
     <!-- Главный контейнер приложения (Сетка Grid) -->
@@ -50,14 +69,13 @@
                 <div class="canvas-wrapper" id="drop-zone">
                     <!-- Текст-кнопка для загрузки -->
                     <div class="upload-zone">
-                        <input type="file" id="file-input" class="upload-zone__input" accept="image/*" hidden />
-                        <label for="file-input" class="upload-zone__button">
-                            Загрузите изображение
-                        </label>
+                        <input type="file" id="image-loader" accept="image/*" class="visually-hidden">
                     </div>
 
                     <!-- Холст для редактора -->
-                    <canvas id="editor-canvas" width="800" height="700"></canvas>
+                    <div class="canvas-wrapper" id="drop-zone">
+                        <canvas id="canvas" class="canvas" width="800" height="700"></canvas>
+                    </div>
                 </div>
             </main>
         </div>
@@ -79,7 +97,14 @@
         <p>&copy; 2026 Progect - P1. Разработано в учебных целях.</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    
+    <!-- Затем ваш скрипт -->
+    <script src="js/theme.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <!-- Правильно: Сначала библиотека -->
+    
+    
+
 </body>
 
 </html>

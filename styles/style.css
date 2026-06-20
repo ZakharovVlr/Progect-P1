@@ -1,4 +1,5 @@
 body {
+    background-color: var(--color-bg);
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
@@ -11,11 +12,11 @@ body {
     max-width: 1300px;
     width: 100%;
     /* Ограничение по ширине макета */
-    background-color: #e0e0e0;
+    background-color: var(--color-header);
     /* Светло-серый цвет */
     padding: 24px 0;
     text-align: center;
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo-link {
@@ -28,6 +29,18 @@ body {
     /* Шрифт с засечками, как в Progeсt-P1 */
     color: #1a1a1a;
     letter-spacing: 1px;
+}
+
+.header__theme-menu-button {
+    padding: 5px 16px;
+    background-color: var(--color-header);
+    border: 1px solid var(--border-color-header);
+    color: var(--color-text-header);
+}
+
+.header__theme-menu-button:hover {
+    border: 1px solid var(--border-color-hover);
+    color: var(--color-text-header-hover);
 }
 
 /* 3. Основной контейнер (Розовая подложка) */
@@ -44,16 +57,28 @@ body {
     grid-column: 2 / 3;
 }
 
+.canvas {
+    width: 100%;
+    min-width: 800px;
+    height: auto;
+}
+
 /* Стили для того, чтобы холст и зона загрузки вели себя корректно внутри сетки */
 .canvas-wrapper {
     position: relative;
+    display: inline-block;
     width: 100%;
     min-height: 500px;
     display: flex;
-    background-color: #d9d9d9;
+    background-color: var(--color-canvas);
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+
+.sidebar {
+    background-color: var(--color-sidebar);
 }
 
 /* Левая серая панель */
@@ -61,7 +86,6 @@ body {
     width: 200px;
     grid-column: 1;
     grid-row: 1/2;
-    background-color: #d9d9d9;
 }
 
 /* Текст по центру рабочей зоны */
@@ -76,12 +100,15 @@ body {
     width: 100%;
 }
 
+.upload-zone--hidden {
+    display: none;
+}
+
 /* Правая серая панель */
 .sidebar--right {
     width: 200px;
     grid-column: 3;
     grid-row: 1/2;
-    background-color: #d9d9d9;
 }
 
 /* Нижняя длинная серая панель фильтров */
@@ -89,13 +116,13 @@ body {
     /* Растягивает панель фильтров от 1-й до 4-й вертикальной грид-линии (на все 3 колонки) */
     grid-column: 1 / -1;
     height: 100px;
-    background-color: #d9d9d9;
+    background-color: var(--color-filters-panel);
 }
 
 /* 4. Подвал (ниже розового контейнера на белом фоне) */
 .footer {
+    max-width: 1300px;
     width: 100%;
-    max-width: 1024px;
     background-color: #ffffff;
     /* Белый фон в самом низу */
     padding: 40px 20px;
@@ -106,6 +133,12 @@ body {
 
 @media (min-width: 768px) and (max-width: 1024px) {
     body {}
+
+    .canvas {
+        width: 100%;
+        min-width: 600px;
+        height: auto;
+    }
 }
 
 @media (max-width: 767px) {

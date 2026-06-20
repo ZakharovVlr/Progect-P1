@@ -1,0 +1,33 @@
+:root.theme-light {
+    /* --- Цветовая палитра --- */
+    --color-bg: #ffffff;
+    --color-header: #0011ff;
+    --color-sidebar: #6fb7ff;
+    --color-filters-panel: #6fb7ff;
+    --color-bg-surface: #5a5a5a;
+    --color-canvas: #6fb7ff;
+    --color-text-header: #cecece;
+    --color-text-header-hover: #ffffff;
+    --border-color-header: #cecece;
+    --color-text-main: #101010;
+    --border-color: #333333;
+    --border-color-hover: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-bg: #ffffff;
+        --color-header: #0011ff;
+        --color-sidebar: #6fb7ff;
+        --color-filters-panel: #6fb7ff;
+        --color-bg-surface: #5a5a5a;
+        --color-canvas: #6fb7ff;
+        --color-text-header: #cecece;
+        --color-text-header-hover: #ffffff;
+        --border-color-header: #cecece;
+        --color-text-main: #101010;
+        --border-color: #333333;
+        --border-color-hover: #ffffff;
+        }
+    }
+}

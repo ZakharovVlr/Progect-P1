@@ -1,38 +1,44 @@
+'use strict'
 
-const fileInput = document.querySelector('#file-input');
+// Для Fabric.js v5
+import { fabric } from 'fabric'; 
 
-fileInput.addEventListener('change', (event) => {
-    // 1. Достаем файл из инпута (пользователь может выбрать несколько, берем первый)
-    const file = event.target.files[0];
+// 1. Инициализируем холст Fabric.js
+const canvas = new fabric.Canvas('canvas');
 
-    // Если пользователь открыл окно, но ничего не выбрал и закрыл — выходим
-    if (!file) return;
+// 2. Находим элемент инпута
+const imageLoader = document.getElementById('imageLoader');
 
-    // 2. БЕЗОПАСНОСТЬ: Проверяем тип файла. 
-    // Даже если в HTML стоит accept="image/*", хакер может подсунуть другой файл.
-    if (!file.type.startsWith('image/')) {
-        alert('Пожалуйста, выберите файл изображения (JPEG, PNG и др.)');
-        return;
-    }
+// 3. Вешаем событие на изменение инпута (выбор файла)
+imageLoader.addEventListener('change', handleImage, false);
 
-    // 3. Создаем инструмент для чтения файлов
+function handleImage(e) {
     const reader = new FileReader();
 
-    // 4. Говорим браузеру, что делать, когда файл успешно прочитан
-    reader.onload = (e) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous'; // Помним про CORS-защиту!
+    // Читаем первый выбранный файл
+    const file = e.target.files[0];
 
-        img.onload = () => {
-            // Здесь мы вызываем метод нашего движка CanvasEngine, 
-            // который мы проектировали в прошлых шагах
-            engine.initNewImage(img);
+    if (!file) return;
+
+    // Когда файл успешно прочитан...
+    reader.onload = function (event) {
+        const imgObj = new Image();
+        imgObj.src = event.target.result;
+
+        // Когда изображение загрузилось в память...
+        imgObj.onload = function () {
+            // Создаем объект изображения Fabric.js
+            const fabricImg = new fabric.Image(imgObj);
+
+            // Опционально: масштабируем, если фото больше холста
+            fabricImg.scaleToWidth(300);
+
+            // Добавляем изображение на холст и обновляем его
+            canvas.add(fabricImg);
+            canvas.renderAll();
         };
-
-        // e.target.result — это строка в формате Data URL (база данных картинки в виде текста)
-        img.src = e.target.result;
     };
 
-    // 5. Запускаем чтение файла как текстовой ссылки Data URL
+    // Запускаем чтение файла в формате DataURL
     reader.readAsDataURL(file);
-});
+}
