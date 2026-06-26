@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="styles/variables.css">
     <link rel="stylesheet" href="styles/light-theme.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/buttons.css">
 </head>
 
 <body>
@@ -38,39 +39,72 @@
 
         <div class="header__theme-menu">
             <!-- Кнопка автоматической темы (системная) -->
-            <button type="button" class="header__theme-menu-button header__theme-menu-button_active header__theme-menu-button_type_auto">
+            <button type="button"
+                class="header__theme-menu-button header__theme-menu-button_active header__theme-menu-button_type_auto">
                 Auto
             </button>
-        
+
             <!-- Кнопка светлой темы -->
             <button type="button" class="header__theme-menu-button header__theme-menu-button_type_light">
                 Day
             </button>
-        
+
             <!-- Кнопка ночной темы -->
-            <button type="button" class="header__theme-menu-button header__theme-menu-button_type_dark header__theme-menu-button_active">
+            <button type="button"
+                class="header__theme-menu-button header__theme-menu-button_type_dark header__theme-menu-button_active">
                 Night
             </button>
+
         </div>
 
     </header>
 
     <!-- Главный контейнер приложения (Сетка Grid) -->
-    <div class="app-container">
+<div class="app-container">
 
-        <!-- Левая панель с кнопками -->
-        <aside class="sidebar sidebar--left">
-            <!-- Кнопки будут здесь -->
-            <ul class="sidebar__list">
-                <li><button class="sidebar__button" aria-label="Действие 1">•</button></li>
-                <li><button class="sidebar__button" aria-label="Действие 2">•</button></li>
-                <li><button class="sidebar__button" aria-label="Действие 3">•</button></li>
-                <li><button class="sidebar__button" aria-label="Действие 4">•</button></li>
-                <li><button class="sidebar__button" aria-label="Действие 5">•</button></li>
-                <li><button class="sidebar__button" aria-label="Действие 6">•</button></li>
-                <!-- ... -->
+    <!-- Кнопка-гамбургер (только для мобильных) -->
+    <button class="menu-toggle" type="button" onclick="document.getElementById('menu-dialog').showModal()"
+        aria-label="Открыть меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+    </button>
+
+    <!-- Левая боковая панель (для десктопа) -->
+    <aside class="sidebar sidebar-left">
+        <ul class="sidebar__list">
+            <li><button class="sidebar__button" aria-label="Действие 1">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 2">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 3">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 4">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 5">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 6">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 7">.</button></li>
+            <li><button class="sidebar__button" aria-label="Действие 8">.</button></li>
+        </ul>
+    </aside>
+
+    <!-- Модальное окно (только для мобильных) -->
+    <dialog class="modal-dialog" id="menu-dialog">
+        <div class="modal-dialog__content">
+            <ul class="sidebar__list mobile-menu-list">
+                <li><button class="sidebar__button" aria-label="Действие 1">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 2">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 3">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 4">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 5">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 6">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 7">.</button></li>
+                <li><button class="sidebar__button" aria-label="Действие 8">.</button></li>
             </ul>
-        </aside>
+        </div>
+        <button class="modal-dialog__close-button button" type="button"
+            onclick="document.getElementById('menu-dialog').close()">
+            <span class="button__text">Закрыть</span>
+        </button>
+    </dialog>
 
         <!-- Центральная рабочая зона -->
         <div class="workspace-row">
@@ -89,7 +123,8 @@
         </div>
 
         <!-- Правая панель с кнопками -->
-        <aside class="sidebar sidebar--right">
+
+        <aside class="sidebar sidebar-right">
             <!-- Кнопки будут здесь -->
         </aside>
 
@@ -105,13 +140,14 @@
         <p>&copy; 2026 Progect - P1. Разработано в учебных целях.</p>
     </footer>
 
-    
+
     <!-- Затем ваш скрипт -->
     <script src="js/theme.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/move-shadow.js" defer></script>
     <!-- Правильно: Сначала библиотека -->
-    
-    
+
+
 
 </body>
 

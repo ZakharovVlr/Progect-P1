@@ -12,6 +12,9 @@
     --color-text-main: #101010;
     --border-color: #333333;
     --border-color-hover: #ffffff;
+    --dark-line-color: rgb(52, 130, 255);
+    --min-dark-line-color: rgb(117, 170, 255);
+    --extra-min-line-color: rgb(89, 153, 255);
 }
 
 @media (prefers-color-scheme: light) {
@@ -28,6 +31,9 @@
         --color-text-main: #101010;
         --border-color: #333333;
         --border-color-hover: #ffffff;
-        }
+        --dark-line-color: rgb(52, 130, 255);
+        --min-dark-line-color: rgb(117, 170, 255);
+        --extra-min-line-color: rgb(89, 153, 255);
     }
+}
 }

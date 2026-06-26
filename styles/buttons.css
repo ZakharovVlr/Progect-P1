@@ -1,0 +1,41 @@
+/* По умолчанию (мобильная версия) */
+.sidebar-left {
+    display: none;
+    /* скрываем левую панель */
+}
+
+.menu-toggle {
+    display: flex;
+    /* показываем гамбургер */
+    /* остальные стили кнопки */
+}
+
+.modal-dialog {
+    /* стили для модалки (как у вас) */
+}
+
+/* Десктопная версия: ширина ≥ 700px */
+@media (min-width: 700px) {
+    .sidebar-left {
+        display: block;
+        /* показываем левую панель */
+        /* задайте ширину, отступы, фон и пр. */
+    }
+
+    .menu-toggle {
+        display: none !important;
+        /* скрываем гамбургер */
+    }
+
+    .modal-dialog {
+        display: none !important;
+        /* скрываем диалог полностью */
+        /* можно также убрать position: fixed и пр. */
+    }
+
+    /* При необходимости настройте сетку, чтобы панель встала на место */
+    .app-container {
+        grid-template-columns: auto 1fr auto;
+        /* пример для трёх колонок */
+    }
+}
