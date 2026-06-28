@@ -12,18 +12,25 @@
 .button {}
 
 .modal-dialog {
+    justify-self: end;
     width: 200px;
-    background-color: var(--color-bg);
+    height: 400px;
+    background-color: var(--color-header);
     color: var(--color-text-header);
+    border: 1px solid #848383;
 }
 
 .modal-dialog__content {}
 
 .menu-content {}
 
-.menu-title {}
+.menu-title {
+   
+}
 
-.theme-switch {}
+.theme-switch {
+  
+}
 
 .theme-switch__track {}
 
@@ -35,7 +42,14 @@
 
 .icon-moon {}
 
-.modal-dialog__close-button {}
+.modal-dialog__close-button {
+  
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        align-items: start;
+        justify-content: end;
+}
 
 .button {}
 
