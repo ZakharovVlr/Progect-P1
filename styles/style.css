@@ -112,17 +112,19 @@ body {
 .canvas-wrapper {
     position: relative;
     width: 100%;
+    max-width: 100%;
     background-color: var(--color-canvas);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.canvas {
+#canvas {
+    display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 800 / 700;
-    /* сохраняем пропорции */
+    /* браузер сам вычислит высоту, сохраняя внутренние пропорции */
+    max-width: 100%;
 }
 
 .preview-block {
