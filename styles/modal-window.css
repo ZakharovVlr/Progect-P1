@@ -1,0 +1,42 @@
+.menu-button {
+    grid-column: 3;
+    justify-self: end;
+    align-self: center;
+    background-color: transparent;
+    color: #fff;
+    width: 30px;
+    border: none;
+    margin: 0 10px;
+}
+
+.button {}
+
+.modal-dialog {
+    width: 200px;
+    background-color: var(--color-bg);
+    color: var(--color-text-header);
+}
+
+.modal-dialog__content {}
+
+.menu-content {}
+
+.menu-title {}
+
+.theme-switch {}
+
+.theme-switch__track {}
+
+.theme-switch__thumb {}
+
+.icon {}
+
+.icon-sun {}
+
+.icon-moon {}
+
+.modal-dialog__close-button {}
+
+.button {}
+
+.button__text {}

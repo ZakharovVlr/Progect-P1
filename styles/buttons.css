@@ -1,41 +1,89 @@
 /* По умолчанию (мобильная версия) */
-.sidebar-left {
-    display: none;
-    /* скрываем левую панель */
+/* ===== Новый стиль переключателя ===== */
+/* ===== Компактный переключатель ===== */
+.theme-switch {
+    all: unset;
+    /* Сброс стандартных стилей кнопки */
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    /* Уменьшенная ширина */
+    height: 32px;
+    /* Уменьшенная высота */
+    border-radius: 32px;
+    background-color: #000000;
+    /* Чёрный фон капсулы */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease;
 }
 
-.menu-toggle {
+.theme-switch__track {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+}
+
+/* Подвижная ручка */
+.theme-switch__thumb {
     display: flex;
-    /* показываем гамбургер */
-    /* остальные стили кнопки */
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 24px;
+    /* Ручка поменьше */
+    height: 24px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #222222;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+    will-change: transform;
 }
 
-.modal-dialog {
-    /* стили для модалки (как у вас) */
+/* Позиции ручки: светлая слева, тёмная справа */
+.theme-switch[data-theme="light"] .theme-switch__thumb {
+    transform: translateX(0);
 }
 
-/* Десктопная версия: ширина ≥ 700px */
-@media (min-width: 700px) {
-    .sidebar-left {
-        display: block;
-        /* показываем левую панель */
-        /* задайте ширину, отступы, фон и пр. */
-    }
+.theme-switch[data-theme="dark"] .theme-switch__thumb {
+    transform: translateX(88px);
+    /* 120 - 24 - 2*4 = 88 */
+}
 
-    .menu-toggle {
-        display: none !important;
-        /* скрываем гамбургер */
-    }
+/* Иконки внутри ручки */
+.theme-switch__thumb .icon {
+    width: 16px;
+    /* Иконки поменьше */
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
 
-    .modal-dialog {
-        display: none !important;
-        /* скрываем диалог полностью */
-        /* можно также убрать position: fixed и пр. */
-    }
+/* По умолчанию скрываем все иконки */
+.theme-switch__thumb .icon-sun,
+.theme-switch__thumb .icon-moon {
+    display: none;
+}
 
-    /* При необходимости настройте сетку, чтобы панель встала на место */
-    .app-container {
-        grid-template-columns: auto 1fr auto;
-        /* пример для трёх колонок */
-    }
+/* Показываем нужную иконку */
+.theme-switch[data-theme="light"] .theme-switch__thumb .icon-sun {
+    display: block;
+    color: #FF8C00;
+    /* Оранжевый для солнца */
+}
+
+.theme-switch[data-theme="dark"] .theme-switch__thumb .icon-moon {
+    display: block;
+    color: #F0E68C;
+    /* Приглушённый жёлтый для луны */
+}
+
+/* Небольшой эффект при наведении */
+.theme-switch:hover .theme-switch__thumb {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }

@@ -40,14 +40,6 @@ body {
     align-self: center;
     justify-self: center;
     text-decoration: none;
-    text-shadow:
-        1px -1px 0 #000000,
-        -1px 2px 0 #0e0e0e,
-        -2px 4px 1px #2c2c2c,
-        -3px 6px 1px #555555,
-        -4px 8px 1px #757575,
-        -5px 8px 1px #cdcdcd;
-
 }
 
 .logo-link:hover {
@@ -60,7 +52,7 @@ body {
 
 .logo-text {
     display: inline-block;
-    font-family: 'Bitcount Single', sans-serif;
+    font-family: 'Climate Crisis', sans-serif;
     font-size: clamp(1.375rem, 1.1216rem + 1.0811vw, 2rem);
     color: #ffffff;
     letter-spacing: 1px;
@@ -100,91 +92,87 @@ body {
 }
 
 /* 3. Основной контейнер (Розовая подложка) */
-.app-container {
-    display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    grid-template-rows: 2fr min-content;
-    padding: 20px 0;
-    gap: 20px;
+.canvas-zone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1300px;
+    min-height: 60vh;
+    padding: 20px;
+    background: var(--color-canvas, #f0f0f0);
 }
 
-/* Центрирование рабочей зоны во второй колонке */
-.workspace-row {
-    grid-column: 2 / 3;
+.editor-block,
+.preview-block {
+    width: 100%;
+    max-width: 800px;
+}
+
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-canvas);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .canvas {
-    width: var(--canvas-width);
+    width: 100%;
     height: auto;
+    aspect-ratio: 800 / 700;
+    /* сохраняем пропорции */
 }
 
-/* Стили для того, чтобы холст и зона загрузки вели себя корректно внутри сетки */
-.canvas-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    min-height: 500px;
+.preview-block {
     display: flex;
-    background-color: var(--color-canvas);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 20px;
 }
 
-
-.sidebar__list {
-    width: 200px;
-    display: grid;
-    gap: 3px;
-    grid-template-columns: repeat(4, min-content);
-    grid-template-rows: min-content;
-    background-color: var(--color-sidebar);
-    padding: 5px;
-}
-
-.sidebar__item {
-    display: contents;
-}
-
-.sidebar__button {
-    width: 45px;
-    height: 45px;
-    background-color: aqua;
-}
-
-/* Левая серая панель */
-.sidebar--left {
-    grid-column: 1;
-    grid-row: 1/2;
-}
-
-/* Текст по центру рабочей зоны */
 .upload-zone {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 4 / 3;
+    border: 2px dashed #aaa;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1;
-    color: #b0b0b0;
-    font-family: 'Press Start 2P', sans-serif;
-    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
 }
 
-.upload-zone--hidden {
-    display: none;
+.upload-zone.dragover {
+    border-color: #4a90d9;
 }
 
+.upload-label {
+    cursor: pointer;
+    text-align: center;
+}
 
+.upload-text {
+    font-size: 1.2rem;
+    display: block;
+}
 
-/* Правая серая панель */
-.sidebar--right {
-    grid-column: 3;
-    grid-row: 1/2;
+.upload-hint {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.add-photo-button {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 40px;
+    background: #4a90d9;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
 }
 
 /* Нижняя длинная серая панель фильтров */
@@ -211,7 +199,7 @@ body {
     body {}
 
     .app-header {
-        height: 70px;
+        height: 45px;
         padding: 0;
     }
 
@@ -222,50 +210,6 @@ body {
         display: none;
     }
 
-    .header__theme-menu-button {}
-
-    .header__theme-menu-button_active {}
-
-    .header__theme-menu-button_type_auto {}
-
-    .header__theme-menu-button_type_light {}
-
-    .header__theme-menu-button_type_dark {}
-
-    .app-container {}
-
-    .sidebar {}
-
-    .sidebar--left {}
-
-    .sidebar__list {}
-
-    .sidebar__button {}
-
-    .workspace-row {}
-
-    .canvas-zone {}
-
-    .canvas-wrapper {}
-
-    .canvas {}
-
-    .upload-zone {}
-
-    .upload-label {}
-
-    .upload-text {}
-
-    .upload-hint {}
-
-    .visually-hidden {}
-
-    .sidebar--right {}
-
-    .filters-panel {}
-
-    .footer {}
-}
 
 @media (prefers-reduced-motion) {
     span {

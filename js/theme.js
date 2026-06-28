@@ -1,54 +1,45 @@
-(function initTheme() {
-  const theme = localStorage.getItem('theme');
-  if (theme) {
-    setTheme(theme);
-  }
-})();
-
+// ===== Логика циклического переключения =====
+// ===== Логика переключения между двумя темами =====
 document.addEventListener('DOMContentLoaded', () => {
-  const currentTheme = [...document.documentElement.classList]
-    .find((cn) => cn.startsWith('theme-'))
-    ?.replace('theme-', '');
-  const themeButtons = [
-    ...document.querySelectorAll('.header__theme-menu-button'),
-  ];
-  setActiveButton(themeButtons, currentTheme);
+  const switchEl = document.querySelector('.theme-switch');
+  const themes = ['light', 'dark'];
 
-  themeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const chosenTheme = [...button.classList]
-        .find((cn) => cn.includes('_type_'))
-        .split('_type_')[1];
-      setTheme(chosenTheme);
-      setActiveButton(themeButtons, chosenTheme);
-    });
-  });
-});
+  // Определяем текущую тему
+  function getCurrentTheme() {
+    // 1. Проверяем localStorage
+    const stored = localStorage.getItem('theme');
+    if (stored && themes.includes(stored)) return stored;
 
-function setTheme(theme) {
-  document.documentElement.className = '';
-  document.documentElement.classList.add(`theme-${theme}`);
-  localStorage.setItem('theme', theme);
-}
+    // 2. Проверяем классы на <html>
+    const htmlClass = document.documentElement.className;
+    const match = htmlClass.match(/theme-(\w+)/);
+    if (match && themes.includes(match[1])) return match[1];
 
-function setActiveButton(buttonsArray, theme) {
-  buttonsArray.forEach((button) => {
-    button.classList.remove('header__theme-menu-button_active');
-    button.removeAttribute('disabled');
-  });
-  const target = buttonsArray.find((button) =>
-    button.classList.contains(`header__theme-menu-button_type_${theme}`)
-  );
-  if (target) {
-    target.classList.add('header__theme-menu-button_active');
-    target.setAttribute('disabled', true);
-  } else {
-    const autoButton = document.querySelector(
-      '.header__theme-menu-button_type_auto'
-    );
-    autoButton.classList.add('header__theme-menu-button_active');
-    autoButton.setAttribute('disabled', true);
+    // 3. По умолчанию — светлая
+    return 'light';
   }
-}
 
+  function setTheme(theme) {
+    // Обновляем классы на <html>
+    document.documentElement.className = '';
+    document.documentElement.classList.add(`theme-${theme}`);
 
+    // Сохраняем в localStorage
+    localStorage.setItem('theme', theme);
+
+    // Обновляем состояние переключателя
+    switchEl.setAttribute('data-theme', theme);
+  }
+
+  function toggleTheme() {
+    const current = getCurrentTheme();
+    const next = current === 'light' ? 'dark' : 'light';
+    setTheme(next);
+  }
+
+  // Инициализация
+  setTheme(getCurrentTheme());
+
+  // Обработчик клика
+  switchEl.addEventListener('click', toggleTheme);
+});
