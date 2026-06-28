@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     const fileInput = document.getElementById('image-loader');
-
     const previewBlock = document.getElementById('previewBlock');
     const editorBlock = document.getElementById('editorBlock');
     const uploadZone = document.getElementById('uploadZone');
@@ -38,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         reader.readAsDataURL(file);
     }
+
 
     // Дополнительно: клик по зоне (кроме label) тоже открывает выбор
     uploadZone.addEventListener('click', (e) => {
