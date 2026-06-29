@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
 
                 previewBlock.style.display = 'none';
-                editorBlock.style.display = 'block';
+                editorBlock.style.display = 'flex';
             };
             img.src = e.target.result;
         };

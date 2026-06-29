@@ -94,9 +94,10 @@ body {
 
 /* 3. Основной контейнер (Розовая подложка) */
 .canvas-zone {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    align-self: center;
+    justify-self: center;
     width: 100%;
     max-width: 1300px;
     min-height: 60vh;
@@ -106,44 +107,45 @@ body {
 
 .editor-block,
 .preview-block {
+    display: grid;
+    grid-row: 1;
+    justify-self: center;
+    align-items: center;
     width: 100%;
-    max-width: 800px;
+    min-height: 400px;
 }
 
 .canvas-wrapper {
-    position: relative;
+    grid-row: 1;
+    justify-self: center;
+    align-items: center;
     width: 100%;
     max-width: 100%;
     background-color: var(--color-canvas);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #canvas {
     display: block;
     width: 100%;
-    height: auto;
-    /* браузер сам вычислит высоту, сохраняя внутренние пропорции */
-    max-width: 100%;
+    max-width: 700px;
 }
 
 .preview-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    grid-row: 1;
     gap: 20px;
+    align-self: center;
+    justify-self: center;
 }
 
 .upload-zone {
+    grid-row: 1;
+    justify-self: center;
+    align-self: end;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    max-width: 700px;
+    aspect-ratio: 1 / 1;
     border: 2px solid #aaa;
     border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background: var(--color-canvas);
     cursor: pointer;
     transition: border-color 0.3s;
@@ -154,8 +156,11 @@ body {
 }
 
 .upload-label {
-    cursor: pointer;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .upload-text {
@@ -164,12 +169,14 @@ body {
     display: block;
 }
 
-
 .add-photo-button {
+    grid-row: auto;
+    justify-self: center;
+    align-self: end;
     padding: 12px 32px;
     border: none;
     border-radius: 40px;
-    background: #4a90d9;
+    background-color: #ff5600;
     color: #fff;
     font-size: 1.1rem;
     cursor: pointer;
@@ -188,7 +195,6 @@ body {
     max-width: 1300px;
     width: 100%;
     background-color: #ffffff;
-    /* Белый фон в самом низу */
     padding: 40px 20px;
     text-align: center;
     color: #666;
@@ -211,8 +217,8 @@ body {
     }
 
 
-@media (prefers-reduced-motion) {
-    span {
-        animation: none;
+    @media (prefers-reduced-motion) {
+        span {
+            animation: none;
+        }
     }
-}
