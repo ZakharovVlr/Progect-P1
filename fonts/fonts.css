@@ -23,3 +23,13 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Bitcount Single';
+    font-weight: 100 900;
+    font-style: oblique 0deg 20deg;
+    src: url('../fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf') format('truetype-variations'),
+        url('../fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf') format('truetype');
+
+    font-display: swap;
+}
