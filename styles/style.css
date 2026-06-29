@@ -177,10 +177,11 @@ body {
     padding: 12px 32px;
     border: none;
     border-radius: 40px;
-    background-color: #ff5600;
-    color: #fff;
+    background-color: #ff0040;
+    color: #ffffff;
     font-size: 1.1rem;
     cursor: pointer;
+
 }
 
 /* Нижняя длинная серая панель фильтров */
@@ -192,15 +193,7 @@ body {
 }
 
 /* 4. Подвал (ниже розового контейнера на белом фоне) */
-.footer {
-    max-width: 1300px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 40px 20px;
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-}
+
 
 @media (max-width: 375px) {
     body {}
