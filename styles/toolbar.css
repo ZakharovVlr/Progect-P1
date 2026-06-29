@@ -1,9 +1,12 @@
 .toolbar {
-
-    justify-self: center;
-    align-items: center;
+    display: flex;
+    justify-content: center;
+    /* Центрируем кнопки в тулбаре */
+    align-items: flex-start;
+    /* Выравниваем кнопки по верхней линии */
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 16px;
+    /* Расстояние между кнопками */
     width: 100%;
     max-width: 600px;
     padding: 8px 12px;
@@ -19,9 +22,20 @@
 }
 
 .tool-btn {
+    font-family: 'Noto Serif', sans-serif;
     background-color: transparent;
     border: none;
     color: #fff;
+    cursor: pointer;
+
+    /* Главная магия здесь */
+    display: flex;
+    flex-direction: column;
+    /* Ставит текст под иконку */
+    align-items: center;
+    /* Центрирует текст относительно иконки */
+    gap: 6px;
+    /* Отступ между иконкой и текстом */
 }
 
 .toolbar--text {
@@ -34,6 +48,7 @@
 
 
 .text-btn {
+    font-family: 'Noto Serif', sans-serif;
     background-color: transparent;
     border: none;
     color: #fff;

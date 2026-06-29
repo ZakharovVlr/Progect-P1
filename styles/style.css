@@ -16,7 +16,7 @@ body {
             var(--extra-min-line-color) 50%),
         rgb(218, 218, 218);
     background-size: 50px 50px;
-    font-family: sans-serif;
+    font-family: 'Noto Serif', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,6 +173,7 @@ body {
     grid-row: auto;
     justify-self: center;
     align-self: end;
+    font-family: 'Noto Serif', sans-serif;
     padding: 12px 32px;
     border: none;
     border-radius: 40px;
