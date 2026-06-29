@@ -1,15 +1,17 @@
 :root.theme-light {
     /* --- Цветовая палитра --- */
     --color-bg: #ffffff;
-    --color-header: #0011ff;
+    --color-header: #ffffff;
     --color-sidebar: #6fb7ff;
     --color-filters-panel: #6fb7ff;
     --color-bg-surface: #5a5a5a;
-    --color-canvas: #6fb7ff;
+    --color-canvas: #F5F2EB;
     --color-text-header: #cecece;
     --color-text-header-hover: #ffffff;
     --border-color-header: #cecece;
-    --color-text-main: #101010;
+    --color-text-main: #191919;
+    --color-add-button: #191919;
+    --color-add-text: #f5f5f7;
     --border-color: #333333;
     --border-color-hover: #ffffff;
     --dark-line-color: rgb(52, 130, 255);
@@ -28,7 +30,9 @@
         --color-text-header: #cecece;
         --color-text-header-hover: #ffffff;
         --border-color-header: #cecece;
-        --color-text-main: #101010;
+        --color-text-main: #191919;
+        --color-add-button: #f5f5f7;
+        --color-add-text: #191919;
         --border-color: #333333;
         --border-color-hover: #ffffff;
         --dark-line-color: rgb(52, 130, 255);

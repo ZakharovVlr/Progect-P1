@@ -3,7 +3,7 @@
     justify-self: end;
     align-self: center;
     background-color: transparent;
-    color: #fff;
+    color: var(--color-text-main);
     width: 30px;
     border: none;
     margin: 0 10px;
@@ -46,7 +46,7 @@
   
         background-color: transparent;
         border: none;
-        color: #fff;
+        color: var(--color-text-main);
         align-items: start;
         justify-content: end;
 }

@@ -25,7 +25,7 @@
     font-family: 'Noto Serif', sans-serif;
     background-color: transparent;
     border: none;
-    color: #fff;
+    color: var(--color-text-main);
     cursor: pointer;
 
     /* Главная магия здесь */
@@ -51,5 +51,5 @@
     font-family: 'Noto Serif', sans-serif;
     background-color: transparent;
     border: none;
-    color: #fff;
+    color: var(--color-text-main)
 }
