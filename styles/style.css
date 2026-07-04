@@ -41,25 +41,44 @@ body {
     text-decoration: none;
 }
 
-.logo-link:hover {
-    text-shadow:
-        0 0 5px #ffc320,
-        0 0 15px #ffdd1b,
-        0 0 30px #ffca1b;
-}
-
-
 .logo-text {
-    display: inline-block;
-    font-family: 'Climate Crisis', sans-serif;
-    font-size: clamp(1.375rem, 1.1216rem + 1.0811vw, 2rem);
+    font-family: 'Bitcount Single', monospace;
+    font-weight: 400;
+    font-size: 1.8rem;
     color: var(--color-text-main);
-    letter-spacing: 1px;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--color-text-main);
+    animation:
+        typing 4s steps(7, end) forwards,
+        blink-caret 0.65s step-end infinite;
+    
 }
 
-.logo-text::first-letter {
-    font-size: clamp(1.75rem, 1.4459rem + 1.2973vw, 2.5rem);
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: var(--color-text-main);
+    }
+}
+
 
 /*! сделаем радио кнопки */
 .header__theme-menu {
