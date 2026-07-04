@@ -53,7 +53,7 @@ body {
     border-right: 3px solid var(--color-text-main);
     animation:
         typing 4s steps(7, end) forwards,
-        blink-caret 0.65s step-end infinite;
+        blink-caret 0.65s step-end 10 forwards;
     
 }
 
