@@ -1,12 +1,10 @@
 :root.theme-light {
     /* --- Цветовая палитра --- */
     --color-bg: #ffffff;
-    --color-header: #ffffff;
-    --color-sidebar: #6fb7ff;
-    --color-filters-panel: #6fb7ff;
+    --color-header: #FFFFD4;
     --color-bg-surface: #5a5a5a;
-    --color-canvas: #F5F2EB;
-    --color-text-header: #cecece;
+    --color-canvas: #f8f8d8;
+    --color-text-header: #FFA525;
     --color-text-header-hover: #ffffff;
     --border-color-header: #cecece;
     --color-text-main: #191919;
@@ -22,11 +20,9 @@
 @media (prefers-color-scheme: light) {
     :root {
         --color-bg: #ffffff;
-        --color-header: #0011ff;
-        --color-sidebar: #6fb7ff;
-        --color-filters-panel: #6fb7ff;
+        --color-header: #ffffff;
         --color-bg-surface: #5a5a5a;
-        --color-canvas: #6fb7ff;
+        --color-canvas: #F5F2EB;
         --color-text-header: #cecece;
         --color-text-header-hover: #ffffff;
         --border-color-header: #cecece;
@@ -35,8 +31,9 @@
         --color-add-text: #191919;
         --border-color: #333333;
         --border-color-hover: #ffffff;
-        --dark-line-color: rgb(52, 130, 255);
-        --min-dark-line-color: rgb(117, 170, 255);
-        --extra-min-line-color: rgb(89, 153, 255);
+        --dark-line-color: rgb(255, 255, 255);
+        --min-dark-line-color: rgb(193, 193, 193);
+        --extra-min-line-color: rgb(96, 96, 96);
     }
+}
 }

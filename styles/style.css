@@ -45,7 +45,7 @@ body {
     font-family: 'Bitcount Single', monospace;
     font-weight: 400;
     font-size: 1.8rem;
-    color: var(--color-text-main);
+    color: var(--color-text-header);
     letter-spacing: 0.02em;
     display: inline-block;
     overflow: hidden;
@@ -75,7 +75,7 @@ body {
     }
 
     50% {
-        border-color: var(--color-text-main);
+        border-color: var(--color-text-header);
     }
 }
 
