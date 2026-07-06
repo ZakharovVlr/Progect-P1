@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
 
                 previewBlock.style.display = 'none';
-                editorBlock.style.display = 'flex';
+                editorBlock.style.display = 'grid';
             };
             img.src = e.target.result;
         };
@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fileInput.addEventListener('change', handleFileSelect);
 
-    uploadZone.addEventListener('click', (e) => {
-        if (e.target.closest('#uploadZone')) {
-            fileInput.click();
-        }
-    });
+   // uploadZone.addEventListener('click', (e) => {
+    //    if (e.target.closest('#uploadZone')) {
+     //       fileInput.click();
+    //    }
+   //});
 });

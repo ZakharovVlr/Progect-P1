@@ -54,7 +54,7 @@ body {
     animation:
         typing 4s steps(7, end) forwards,
         blink-caret 0.65s step-end 10 forwards;
-    
+
 }
 
 @keyframes typing {
@@ -128,7 +128,7 @@ body {
     display: grid;
     grid-row: 1;
     justify-self: center;
-    align-items: center;
+    align-self: center;
     width: 100%;
     min-height: 400px;
 }
@@ -146,6 +146,8 @@ body {
     display: block;
     width: 100%;
     max-width: 700px;
+    justify-self: center;
+    align-self: center;
 }
 
 .preview-block {

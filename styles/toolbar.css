@@ -19,6 +19,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    justify-self: center;
 }
 
 .tool-btn {
@@ -27,29 +29,27 @@
     border: none;
     color: var(--color-text-main);
     cursor: pointer;
-
-    /* Главная магия здесь */
     display: flex;
     flex-direction: column;
-    /* Ставит текст под иконку */
     align-items: center;
-    /* Центрирует текст относительно иконки */
+    font-size: 11px;
     gap: 6px;
-    /* Отступ между иконкой и текстом */
 }
 
 .toolbar--text {
     grid-row: 3;
     display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    justify-self: center;
 }
-
 
 .text-btn {
     font-family: 'Noto Serif', sans-serif;
     background-color: transparent;
     border: none;
-    color: var(--color-text-main)
+    color: var(--color-text-main);
+    font-size: 16px;
 }
