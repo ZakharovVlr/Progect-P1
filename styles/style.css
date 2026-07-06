@@ -134,7 +134,7 @@ body {
 }
 
 .canvas-wrapper {
-    grid-row: 1;
+    grid-row: 2;
     justify-self: center;
     align-items: center;
     width: 100%;

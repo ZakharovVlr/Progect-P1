@@ -1,0 +1,38 @@
+.editor-block {
+    grid-template-rows: min-content min-content;
+    row-gap: 12px;
+}
+
+.history-controls {
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+}
+
+.history-controls.is-hidden {
+    display: none;
+}
+
+.history-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--color-text-main);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+
+}
+
+.history-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.history-btn:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.08);
+}
