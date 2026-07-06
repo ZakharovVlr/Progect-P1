@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const filtersBtn = document.getElementById('filtersBtn');
     const filtersMenu = document.getElementById('filtersMenu');
     const filtersMenuClose = document.getElementById('filtersMenuClose');
+    const filterButtons = document.querySelectorAll('.filter-btn');
 
     if (!canvas || !fileInput || !previewBlock || !editorBlock || !uploadZone
         || !toolbarsWrapper || !filtersBtn || !filtersMenu || !filtersMenuClose) {
@@ -23,8 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Флаг: было ли уже загружено фото
     let hasPhoto = false;
+    let currentImage = null;
+    let currentDraw = { offsetX: 0, offsetY: 0, width: 0, height: 0 };
+
+    function setActiveFilterButton(filterName) {
+        filterButtons.forEach((btn) => {
+            btn.classList.toggle('is-active', btn.dataset.filter === filterName);
+        });
+    }
 
     function handleFileSelect(event) {
         const file = event.target.files[0];
@@ -36,20 +44,26 @@ document.addEventListener('DOMContentLoaded', function () {
             const img = new Image();
             img.onerror = () => alert('Файл не является изображением');
             img.onload = function () {
-                const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+                const scale = Math.min(
+                    canvas.width / img.width,
+                    canvas.height / img.height
+                );
                 const newWidth = img.width * scale;
                 const newHeight = img.height * scale;
                 const offsetX = (canvas.width - newWidth) / 2;
                 const offsetY = (canvas.height - newHeight) / 2;
 
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, offsetX, offsetY, newWidth, newHeight);
+                currentImage = img;
+                currentDraw = { offsetX, offsetY, width: newWidth, height: newHeight };
+
+                FilterEngine.render(ctx, canvas, currentImage, currentDraw, 'none');
+                setActiveFilterButton('none');
 
                 previewBlock.style.display = 'none';
                 editorBlock.style.display = 'grid';
                 toolbarsWrapper.classList.remove('is-hidden');
 
-                hasPhoto = true; // теперь фильтрами можно пользоваться
+                hasPhoto = true;
             };
             img.src = e.target.result;
         };
@@ -58,10 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fileInput.addEventListener('change', handleFileSelect);
 
-    // Открыть меню фильтров — только если фото уже загружено
     filtersBtn.addEventListener('click', () => {
-        if (!hasPhoto) return; // защита: без фото меню не откроется
-
+        if (!hasPhoto) return;
         toolbarsWrapper.classList.add('is-hidden');
         filtersMenu.classList.remove('is-hidden');
         filtersBtn.setAttribute('aria-expanded', 'true');
@@ -71,5 +83,13 @@ document.addEventListener('DOMContentLoaded', function () {
         filtersMenu.classList.add('is-hidden');
         toolbarsWrapper.classList.remove('is-hidden');
         filtersBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    filterButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const filterName = btn.dataset.filter;
+            FilterEngine.render(ctx, canvas, currentImage, currentDraw, filterName);
+            setActiveFilterButton(filterName);
+        });
     });
 });
