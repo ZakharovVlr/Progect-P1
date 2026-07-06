@@ -6,9 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const previewBlock = document.getElementById('previewBlock');
     const editorBlock = document.getElementById('editorBlock');
     const uploadZone = document.getElementById('uploadZone');
+    const toolbarsWrapper = document.getElementById('toolbarsWrapper');
+    const filtersBtn = document.getElementById('filtersBtn');
+    const filtersMenu = document.getElementById('filtersMenu');
+    const filtersMenuClose = document.getElementById('filtersMenuClose');
 
-    // Проверяем все элементы
-    if (!canvas || !fileInput || !previewBlock || !editorBlock || !uploadZone) {
+    if (!canvas || !fileInput || !previewBlock || !editorBlock || !uploadZone
+        || !toolbarsWrapper || !filtersBtn || !filtersMenu || !filtersMenuClose) {
         console.error('Не найдены все элементы. Проверьте id в HTML.');
         return;
     }
@@ -19,15 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Если в HTML заданы width/height, используем их, но можно и синхронизировать с CSS при желании
-    // В данном случае оставляем атрибуты как есть — они определяют рабочую область.
-    // Если canvas-wrapper имеет резиновую ширину, раскомментируйте блок:
-    // function syncCanvasSize() {
-    //     canvas.width = canvas.clientWidth;
-    //     canvas.height = canvas.clientHeight;
-    // }
-    // syncCanvasSize();
-    // window.addEventListener('resize', syncCanvasSize);
+    // Флаг: было ли уже загружено фото
+    let hasPhoto = false;
 
     function handleFileSelect(event) {
         const file = event.target.files[0];
@@ -39,15 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const img = new Image();
             img.onerror = () => alert('Файл не является изображением');
             img.onload = function () {
-                // Если вы хотите, чтобы canvas подстраивался под размер контейнера,
-                // раскомментируйте syncCanvasSize() здесь.
-                // syncCanvasSize();
-
-                // Масштабируем с сохранением пропорций
-                const scale = Math.min(
-                    canvas.width / img.width,
-                    canvas.height / img.height
-                );
+                const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
                 const newWidth = img.width * scale;
                 const newHeight = img.height * scale;
                 const offsetX = (canvas.width - newWidth) / 2;
@@ -58,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 previewBlock.style.display = 'none';
                 editorBlock.style.display = 'grid';
+                toolbarsWrapper.classList.remove('is-hidden');
+
+                hasPhoto = true; // теперь фильтрами можно пользоваться
             };
             img.src = e.target.result;
         };
@@ -66,9 +58,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fileInput.addEventListener('change', handleFileSelect);
 
-   // uploadZone.addEventListener('click', (e) => {
-    //    if (e.target.closest('#uploadZone')) {
-     //       fileInput.click();
-    //    }
-   //});
+    // Открыть меню фильтров — только если фото уже загружено
+    filtersBtn.addEventListener('click', () => {
+        if (!hasPhoto) return; // защита: без фото меню не откроется
+
+        toolbarsWrapper.classList.add('is-hidden');
+        filtersMenu.classList.remove('is-hidden');
+        filtersBtn.setAttribute('aria-expanded', 'true');
+    });
+
+    filtersMenuClose.addEventListener('click', () => {
+        filtersMenu.classList.add('is-hidden');
+        toolbarsWrapper.classList.remove('is-hidden');
+        filtersBtn.setAttribute('aria-expanded', 'false');
+    });
 });

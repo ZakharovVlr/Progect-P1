@@ -1,3 +1,7 @@
+.toolbars-wrapper.is-hidden {
+    display: none;
+}
+
 .toolbar {
     display: flex;
     justify-content: center;
