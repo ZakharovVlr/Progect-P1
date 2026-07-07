@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('canvas');
     const fileInput = document.getElementById('image-loader');
@@ -16,10 +14,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const historyControls = document.getElementById('historyControls');
     const undoBtn = document.getElementById('undoBtn');
     const redoBtn = document.getElementById('redoBtn');
+    
+    // Находим новые элементы текстового меню
+    const textMenu = document.getElementById('textMenu');
+    const textMenuClose = document.getElementById('textMenuClose');
+    const textInput = document.getElementById('textInput');
+    const fontSelect = document.getElementById('fontSelect');
+    const sizeInput = document.getElementById('sizeInput');
+    const colorInput = document.getElementById('colorInput');
 
+
+    // Допишите новые переменные в ваше существующее условие if, чтобы JS не падал, если их нет в HTML
     if (!canvas || !fileInput || !previewBlock || !editorBlock || !uploadZone
         || !toolbarsWrapper || !filtersBtn || !filtersMenu || !filtersMenuClose
-        || !historyControls || !undoBtn || !redoBtn) {
+        || !historyControls || !undoBtn || !redoBtn
+        || !textMenu || !textMenuClose || !textInput || !fontSelect || !sizeInput || !colorInput) {
         console.error('Не найдены все элементы. Проверьте id в HTML.');
         return;
     }
@@ -29,6 +38,31 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Контекст canvas не получен');
         return;
     }
+    // 1
+    // 1
+    // 1
+    // 1
+    // 1
+
+    // 1. Находим кнопку в HTML по её уникальному ID
+    // Где-то в начале main.js инициализируем как обычно:
+    window.TextTool.init(canvas, ctx, () => {
+        pushHistory(historyStack[historyIndex]?.filterName || 'none');
+    });
+
+    // Поиск кнопки "Текст" на главной панели
+    const textButton = document.querySelector('#btn-add-text');
+
+    // Клик по кнопке "Текст" — всего ОДНА строчка вызова!
+    if (textButton) {
+        textButton.addEventListener('click', () => {
+            window.TextTool.openMenu(toolbarsWrapper, textButton, hasPhoto);
+        });
+    }
+    // 2. 
+    // 2.
+    // 2.
+    // 2. 
 
     let hasPhoto = false;
     let currentImage = null;
@@ -153,5 +187,14 @@ document.addEventListener('DOMContentLoaded', function () {
         historyIndex += 1;
         restoreHistory(historyIndex);
         updateHistoryButtons();
+    });
+
+    textButton.addEventListener('click', () => {
+        // Получаем текущий снимок canvas БЕЗ текста (чистый фон)
+        // В реальном приложении это делает основной скрипт, хранящий картинку
+        const currentBaseSnapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        // Вызываем метод из нашего модуля
+        window.TextTool.addDefaultText(currentBaseSnapshot);
     });
 });

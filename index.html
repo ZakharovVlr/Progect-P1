@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="styles/buttons.css">
     <link rel="stylesheet" href="styles/modal-window.css">
     <link rel="stylesheet" href="styles/footer-style.css">
+    <link rel="stylesheet" href="styles/text_add.css">
 
 
 </head>
@@ -133,7 +134,7 @@
         <!-- Панель инструментов с иконками (верхняя) -->
         <div class="toolbars-wrapper is-hidden" id="toolbarsWrapper">
             <div class="toolbar toolbar--icons" role="toolbar" aria-label="Инструменты редактирования">
-                <button type="button" class="tool-btn" aria-label="Текст">
+                <button type="button" class="tool-btn" id="btn-add-text" aria-label="Текст">
                     <svg height="32px" width="32px" aria-hidden="true">
                         <use href="./svg/text-format.svg" />
                     </svg>
@@ -170,6 +171,28 @@
                 <button type="button" class="text-btn">Стили</button>
                 <button type="button" class="text-btn">Инструменты</button>
                 <button type="button" class="text-btn">Экспорт</button>
+            </div>
+        </div>
+
+        <!-- Текстовое меню (изначально скрыто классом is-hidden) -->
+        <div id="textMenu" class="text-menu is-hidden" role="region" aria-label="Настройки текста">
+            <div class="toolbar__group">
+                <!-- Кнопка закрытия меню текста и возврата на главную панель -->
+                <button type="button" id="textMenuClose" class="tool-btn tool-btn--close" aria-label="Закрыть настройки текста">
+                    <span>Назад</span>
+                </button>
+        
+                <!-- Заглушки под будущие инструменты управления -->
+                <input type="text" id="textInput" value="Ваш текст" placeholder="Введите текст" class="text-field">
+        
+                <select id="fontSelect">
+                    <option value="Noto Serif">Noto Serif</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+        
+                <input type="number" id="sizeInput" value="32" min="10" max="120" style="width: 60px;">
+                <input type="color" id="colorInput" value="#000000">
             </div>
         </div>
 
@@ -269,6 +292,7 @@
     <script src="js/filters/duotone.js" defer></script>
     <script src="js/filters-index.js" defer></script>
     <script src="js/filter-previews.js" defer></script>
+    <script src="js/text-tool.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/theme.js" defer></script>
 
