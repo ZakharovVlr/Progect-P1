@@ -1,7 +1,7 @@
 // ===== Логика циклического переключения =====
 // ===== Логика переключения между двумя темами =====
 document.addEventListener('DOMContentLoaded', () => {
-  const switchEl = document.querySelector('.theme-switch');
+  const switchEl = document.querySelector('.theme-switch-icon-theme');
   const themes = ['light', 'dark'];
 
   // Определяем текущую тему

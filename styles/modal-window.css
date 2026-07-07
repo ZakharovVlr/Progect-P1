@@ -1,3 +1,21 @@
+.modal-dialog {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 400px;
+    padding: 5px;
+    background-color: var(--color-header);
+    color: var(--color-text-header);
+    border: 1px solid #848383;
+    justify-self: end;
+}
+
+.modal-dialog__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .menu-button {
     grid-column: 3;
     justify-self: end;
@@ -12,6 +30,8 @@
 .button {}
 
 .modal-dialog {
+    display: none;
+    /* по умолчанию скрыт */
     justify-self: end;
     width: 200px;
     height: 400px;
@@ -20,35 +40,53 @@
     border: 1px solid #848383;
 }
 
-.modal-dialog__content {}
-
-.menu-content {}
+.modal-dialog[open] {
+    display: flex;
+    /* показываем только когда реально открыт */
+}
 
 .menu-title {
-   
+    margin: 0;
 }
 
-.theme-switch {
-  
+.theme-switch-icon-theme {
+    margin-top: auto;
+    /* ключевая строка — прижимает кнопку к низу */
+    align-self: center;
+    /* по горизонтали: center / flex-start / flex-end — на ваш вкус */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: var(--color-text-header);
 }
 
-.theme-switch__track {}
+.icon {
+    display: none;
+    /* по умолчанию обе иконки скрыты */
+}
 
-.theme-switch__thumb {}
+/* Активна светлая тема — показываем луну (подсказка: нажми для тёмной) */
+.theme-switch-icon-theme[data-theme="dark"] .icon-moon {
+    display: block;
+}
 
-.icon {}
-
-.icon-sun {}
-
-.icon-moon {}
+/* Активна тёмная тема — показываем солнце (подсказка: нажми для светлой) */
+.theme-switch-icon-theme[data-theme="light"] .icon-sun {
+    display: block;
+}
 
 .modal-dialog__close-button {
-  
-        background-color: transparent;
-        border: none;
-        color: var(--color-text-main);
-        align-items: start;
-        justify-content: end;
+    background-color: transparent;
+    border: none;
+    color: var(--color-text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button {}
