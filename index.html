@@ -190,14 +190,31 @@
                     </svg>
                 </button>
             </div>
-            <div class="filters-menu__list" role="group" aria-label="Фильтры изображения">
-                <button type="button" class="filter-btn" data-filter="none" aria-pressed="true">Оригинал</button>
-                <button type="button" class="filter-btn" data-filter="grayscale" aria-pressed="false">Ч/Б</button>
-                <button type="button" class="filter-btn" data-filter="sepia" aria-pressed="false">Сепия</button>
-                <button type="button" class="filter-btn" data-filter="invert" aria-pressed="false">Инверсия</button>
-                <button type="button" class="filter-btn" data-filter="posterize"
-                    aria-pressed="false">Постеризация</button>
-                <button type="button" class="filter-btn" data-filter="duotone">Дуотон</button>
+            <div class="filters-menu__list">
+                <button type="button" class="filter-btn" data-filter="none">
+                    <span class="filter-btn__thumb" style="background-image:none;"></span>
+                    <span class="filter-btn__label">Оригинал</span>
+                </button>
+                <button type="button" class="filter-btn" data-filter="grayscale">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">Ч/Б</span>
+                </button>
+                <button type="button" class="filter-btn" data-filter="sepia">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">Сепия</span>
+                </button>
+                <button type="button" class="filter-btn" data-filter="invert">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">Инверсия</span>
+                </button>
+                <button type="button" class="filter-btn" data-filter="posterize">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">Постеризация</span>
+                </button>
+                <button type="button" class="filter-btn" data-filter="duotone">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">Дуотон</span>
+                </button>
             </div>
         </div>
 
@@ -258,6 +275,7 @@
     <script src="js/filters/posterize.js" defer></script>
     <script src="js/filters/duotone.js" defer></script>
     <script src="js/filters-index.js" defer></script>
+    <script src="js/filter-previews.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/theme.js" defer></script>
 

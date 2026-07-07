@@ -1,5 +1,6 @@
 'use strict';
 
+'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('canvas');
@@ -100,6 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 historyStack = [];
                 historyIndex = -1;
                 pushHistory('none');
+
+                // Генерируем превью для кнопок фильтров — логика вынесена в filter-previews.js
+                FilterPreviews.generate(currentImage, filterButtons);
 
                 previewBlock.style.display = 'none';
                 editorBlock.style.display = 'grid';

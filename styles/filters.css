@@ -34,7 +34,7 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: flex-start;
-    gap: 16px;
+    gap: 21px;
     padding: 4px 4px 12px;
     -webkit-overflow-scrolling: touch;
     /* плавный скролл на iOS */
@@ -44,22 +44,47 @@
 }
 
 .filter-btn {
-    font-family: 'Noto Serif', sans-serif;
-    background-color: transparent;
-    border: 1px solid var(--color-text-main);
-    border-radius: 8px;
-    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 64px;
+    /* фиксируем ширину — равна ширине превью */
+    flex: 0 0 64px;
+    /* кнопка не растягивается и не сжимается */
+    background: transparent;
+    border: none;
+    padding: 0;
     color: var(--color-text-main);
+    font-family: 'Noto Serif', sans-serif;
     font-size: 14px;
     cursor: pointer;
-    flex: 0 0 auto;
-    /* кнопки не сжимаются и не переносятся на новую строку */
-    white-space: nowrap;
-    /* Плавный возврат в исходное состояние (0.2 секунды) */
     transition: transform 0.2s ease;
 }
 
 .filter-btn:hover {
-    /* Приблизительное увеличение на 3px для текущего размера */
     transform: scale(1.07);
+}
+
+.filter-btn__thumb {
+    display: block;
+    /* ключевое исправление — иначе width/height игнорируются у span */
+    width: 64px;
+    height: 64px;
+    background-color: var(--color-canvas);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    transition: border-color 0.15s;
+}
+
+.filter-btn.is-active .filter-btn__thumb {
+    border-color: var(--color-text-main);
+}
+
+.filter-btn__label {
+    font-size: 12px;
+    font-family: 'Noto Serif', sans-serif;
+    color: var(--color-text-main);
+    white-space: nowrap;
 }
