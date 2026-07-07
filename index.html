@@ -69,8 +69,8 @@
 <dialog class="modal-dialog" id="menu-dialog">
     <div class="modal-dialog__header">
         <h2 class="menu-title">Меню</h2>
-        <button class="modal-dialog__close-button button" type="button" onclick="window['menu-dialog'].close()">
-            <svg width="24" height="24" viewBox="0 -960 960 960" fill="currentColor">
+        <button class="menu__close_button  button" type="button" onclick="window['menu-dialog'].close()">
+            <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
                 <path
                     d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
             </svg>
@@ -175,30 +175,54 @@
         </div>
 
         <!-- Текстовое меню (изначально скрыто классом is-hidden) -->
-        <div id="textMenu" class="text-menu is-hidden" role="region" aria-label="Настройки текста">
-            <div class="toolbar__group">
-                <!-- Кнопка закрытия меню текста и возврата на главную панель -->
-                <button type="button" id="textMenuClose" class="tool-btn tool-btn--close" aria-label="Закрыть настройки текста">
-                    <span>Назад</span>
-                </button>
-        
-                <!-- Заглушки под будущие инструменты управления -->
-                <input type="text" id="textInput" value="Ваш текст" placeholder="Введите текст" class="text-field">
-        
-                <select id="fontSelect">
-                    <option value="Noto Serif">Noto Serif</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
-        
-                <input type="number" id="sizeInput" value="32" min="10" max="120" style="width: 60px;">
-                <input type="color" id="colorInput" value="#000000">
-            </div>
-        </div>
+<!-- Текстовое меню (изначально скрыто классом is-hidden) -->
+<div id="textMenu" class="text-menu is-hidden" role="region" aria-label="Настройки текста">
+
+    <!-- Шапка меню с кнопкой закрытия -->
+    <div class="text-menu__header">
+        <button type="button" id="textMenuClose" class="menu__close_button" aria-label="Закрыть настройки текста">
+            <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
+                <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Список инструментов управления -->
+<div class="text-menu__list">
+    <!-- Поле ввода текста -->
+    <div class="text-menu__field-wrapper">
+        <input type="text" id="textInput" value="Ваш текст" placeholder="Введите текст" class="text-menu__input">
+    </div>
+
+    <!-- Выбор шрифта -->
+    <div class="text-menu__field-wrapper">
+        <select id="fontSelect" class="text-menu__select">
+            <option value="Noto Serif">Noto Serif</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+        </select>
+    </div>
+
+    <!-- Размер шрифта -->
+    <div class="text-menu__field-wrapper text-menu__field-wrapper--size">
+        <input type="number" id="sizeInput" value="32" min="10" max="120"
+            class="text-menu__input text-menu__input--size">
+    </div>
+
+    <!-- Пипетка цвета -->
+    <div class="text-menu__field-wrapper text-menu__field-wrapper--color">
+        <input type="color" id="colorInput" value="#000000" class="text-menu__color-picker">
+    </div>
+</div>
+
+
+</div>
+
 
         <div class="filters-menu is-hidden" id="filtersMenu" role="region" aria-label="Меню фильтров">
             <div class="filters-menu__header">
-                <button type="button" class="filters-menu__close" id="filtersMenuClose"
+                <button type="button" class="menu__close_button" id="filtersMenuClose"
                     aria-label="Закрыть меню фильтров">
                     <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
                         <path

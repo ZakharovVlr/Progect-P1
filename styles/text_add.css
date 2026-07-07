@@ -1,3 +1,158 @@
+/* Общий контейнер текстового меню */
+/* Общий контейнер меню в стиле Claude */
+/* Общий контейнер меню текста (в стиле .lang-dropdown) */
+.text-menu {
+    grid-row: 4;
+    justify-self: center;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    background-color: #191919;
+    /* Точный цвет из вашего файла */
+    border: 1px solid #2b2b2b;
+    /* Точный цвет рамки */
+
+    padding: 16px;
+    /* Сделали отступы чуть просторнее */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Тень из .lang-dropdown */
+    max-width: 630px;
+    width: 100%;
+    user-select: none;
+}
+
+/* Шапка меню (крестик) */
+.text-menu__header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: -4px;
+    /* Небольшая компенсация отступа */
+}
+
+/* Кнопка закрытия (крестик) */
+.menu__close_button {
+    background: none;
+    border: none;
+    color: #666666;
+    /* Цвет стрелочки из .icon-arrow */
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease;
+}
+
+.menu__close_button:hover {
+    color: #ffffff;
+}
+
+/* Список полей (выстраиваем элементы в ряд) */
+.text-menu__list {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+
+/* Обертки для полей */
+.text-menu__field-wrapper {
+    flex: 2;
+    display: flex;
+    align-items: center;
+}
+
+.text-menu__field-wrapper--size {
+    flex: 1;
+    /* Поле числового ввода чуть уже */
+}
+
+.text-menu__field-wrapper--color {
+    flex: 0 0 auto;
+}
+
+/* Элементы управления в стиле .lang-current */
+.text-menu__input,
+.text-menu__select {
+    width: 100%;
+    height: 40px;
+    background-color: #191919;
+    /* Фон в цвет панели */
+    border: 1px solid #2b2b2b;
+    /* Тонкая рамка */
+    border-radius: 8px;
+    /* Радиус из .lang-current */
+    color: #e5e5e5;
+    /* Цвет текста из .lang-current */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    outline: none;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* Специфика для селекта (стильная стрелочка) */
+.text-menu__select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Стрелочка окрашена в цвет #666666 из вашего файла */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://w3.org' width='16' height='16' fill='%23666666'><path d='M4 6l4 4 4-4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+}
+
+/* Поведение при наведении (копирует .lang-current:hover) */
+.text-menu__input:hover,
+.text-menu__select:hover {
+    background-color: #222222;
+    border-color: #3a3a3a;
+}
+
+/* Фокус на инпуте (когда пользователь активно пишет текст) */
+.text-menu__input:focus {
+    border-color: #555555;
+    background-color: #1f1f1f;
+}
+
+/* Стилизация пипетки цвета в тон общей рамки */
+.text-menu__color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid #2b2b2b;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.text-menu__color-picker:hover {
+    border-color: #3a3a3a;
+}
+
+.text-menu__color-picker::-webkit-color-swatch {
+    border: none;
+    border-radius: 6px;
+    /* Чуть меньше родителя, чтобы оставалась рамка */
+}
+
+.text-menu__color-picker::-moz-color-swatch {
+    border: none;
+    border-radius: 6px;
+}
+
+/* Скрытие меню */
 .text-menu.is-hidden {
-    display: none;
+    display: none !important;
 }

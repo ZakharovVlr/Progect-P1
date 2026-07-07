@@ -1,7 +1,7 @@
 .modal-dialog {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 375px;
     height: 400px;
     padding: 5px;
     background-color: var(--color-header);

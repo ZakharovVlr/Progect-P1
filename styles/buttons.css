@@ -1,3 +1,21 @@
+/* ===== общая кнопка для закрытия ===== */
+.menu__close_button {
+    background-color: transparent;
+    border: none;
+    color: #afafaf;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.menu__close_button:hover {
+    color: #ffffff;
+    /* При наведении крестик подсвечивается белым */
+}
+
 /* По умолчанию (мобильная версия) */
 /* ===== Новый стиль переключателя ===== */
 /* ===== Компактный переключатель ===== */
