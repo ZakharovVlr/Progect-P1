@@ -5,9 +5,9 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
-    max-width: 600px;
-    padding: 8px 12px;
-
+    max-width: 630px;
+    padding: 8px 3px;
+    min-width: 0;
 }
 
 .filters-menu.is-hidden {
@@ -31,9 +31,16 @@
 
 .filters-menu__list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
     gap: 16px;
+    padding: 4px 4px 12px;
+    -webkit-overflow-scrolling: touch;
+    /* плавный скролл на iOS */
+    scrollbar-width: thin;
+    /* тонкий скроллбар в Firefox */
+    min-width: 0;
 }
 
 .filter-btn {
@@ -45,4 +52,14 @@
     color: var(--color-text-main);
     font-size: 14px;
     cursor: pointer;
+    flex: 0 0 auto;
+    /* кнопки не сжимаются и не переносятся на новую строку */
+    white-space: nowrap;
+    /* Плавный возврат в исходное состояние (0.2 секунды) */
+    transition: transform 0.2s ease;
+}
+
+.filter-btn:hover {
+    /* Приблизительное увеличение на 3px для текущего размера */
+    transform: scale(1.07);
 }

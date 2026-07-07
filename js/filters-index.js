@@ -6,7 +6,8 @@ const FilterEngine = (function () {
         grayscale: Filters.grayscale,
         invert: Filters.invert,
         sepia: Filters.sepia,
-        posterize: Filters.posterize
+        posterize: Filters.posterize,
+        duotone: Filters.duotone
     };
 
     function render(ctx, canvas, image, draw, filterName) {
