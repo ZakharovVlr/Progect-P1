@@ -1,0 +1,155 @@
+/* Оверлей загрузки при обработке фильтра.
+   position: fixed — координаты (top/left/width/height) выставляются
+   инлайново из loader.js по факту размеров и положения canvas,
+   поэтому оверлей всегда точно совпадает с областью фото, а не со
+   всей страницей, независимо от вёрстки вокруг canvas. */
+/* Оверлей загрузки при обработке фильтра.
+   position: fixed — координаты (top/left/width/height) выставляются
+   инлайново из loader.js по факту размеров и положения canvas,
+   поэтому оверлей всегда точно совпадает с областью фото, а не со
+   всей страницей, независимо от вёрстки вокруг canvas. */
+
+.filter-loader-overlay {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    font-family: 'Noto Serif', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 20;
+}
+
+.filter-loader-overlay.is-visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.filter-loader-text {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+/* Простая "дыхательная" пульсация текста через opacity — только
+   compositor-безопасное свойство, поэтому анимация не замирает,
+   даже если основной поток занят тяжёлой обработкой фильтра. */
+.filter-loader-word {
+    color: #ffffff;
+    animation: filter-loader-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes filter-loader-pulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Точки появляются одна за другой (накопительно), затем разом
+   сбрасываются и цикл повторяется — как классический индикатор "печатает…" */
+.filter-loader-dots {
+    display: inline-flex;
+    gap: 0.25rem;
+    margin-left: 0.15rem;
+}
+
+.filter-loader-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: inline-block;
+    opacity: 0;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: step-end;
+}
+
+.filter-loader-dots span:nth-child(1) {
+    animation-name: filter-loader-dot-1;
+}
+
+.filter-loader-dots span:nth-child(2) {
+    animation-name: filter-loader-dot-2;
+}
+
+.filter-loader-dots span:nth-child(3) {
+    animation-name: filter-loader-dot-3;
+}
+
+/* Первая точка появляется раньше всех и гаснет вместе со всеми в конце цикла */
+@keyframes filter-loader-dot-1 {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Вторая точка появляется позже первой, но обе остаются видны вместе */
+@keyframes filter-loader-dot-2 {
+    0% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Третья точка появляется последней, все три видны вместе перед сбросом */
+@keyframes filter-loader-dot-3 {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

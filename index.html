@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="styles/modal-window.css">
     <link rel="stylesheet" href="styles/footer-style.css">
     <link rel="stylesheet" href="styles/text_add.css">
+    <link rel="stylesheet" href="styles/loader.css">
 
 
 </head>
@@ -115,7 +116,7 @@
                 </button>
             </div>
             <div class="canvas-wrapper">
-                <canvas id="canvas" width="800" height="700"></canvas>
+                <canvas id="canvas" width="800" height="650"></canvas>
             </div>
         </div>
 
@@ -239,6 +240,10 @@
                     <span class="filter-btn__thumb"></span>
                     <span class="filter-btn__label">Ч/Б</span>
                 </button>
+                <button type="button" class="filter-btn" data-filter="red-splash">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">RedSplash</span>
+                </button>
                 <button type="button" class="filter-btn" data-filter="sepia">
                     <span class="filter-btn__thumb"></span>
                     <span class="filter-btn__label">Сепия</span>
@@ -255,6 +260,16 @@
                     <span class="filter-btn__thumb"></span>
                     <span class="filter-btn__label">Дуотон</span>
                 </button>
+                <button type="button" class="filter-btn" data-filter="duotone-green">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">allGreen</span>
+                </button>
+                <button type="button" class="filter-btn" data-filter="duotone-red">
+                    <span class="filter-btn__thumb"></span>
+                    <span class="filter-btn__label">allRed</span>
+                </button>
+                
+
             </div>
         </div>
 
@@ -308,12 +323,16 @@
 
 
     <!-- скрипт -->
+    <script src="js/loader.js" defer></script>
     <script src="js/filters/original-filter.js" defer></script>
     <script src="js/filters/grayscale.js" defer></script>
     <script src="js/filters/invert.js" defer></script>
     <script src="js/filters/sepia.js" defer></script>
     <script src="js/filters/posterize.js" defer></script>
     <script src="js/filters/duotone.js" defer></script>
+    <script src="js/filters/green-duotone.js" defer></script>
+    <script src="js/filters/red-duotone.js" defer></script>
+    <script src="js/filters/red-splash.js" defer></script>
     <script src="js/filters-index.js" defer></script>
     <script src="js/filter-previews.js" defer></script>
     <script src="js/text-tool.js" defer></script>

@@ -1,5 +1,8 @@
 .editor-block {
     grid-template-rows: min-content min-content;
+    min-height: auto;
+    /* Убираем жесткую фиксацию в 400px */
+    grid-template-rows: auto auto;
     row-gap: 12px;
 }
 

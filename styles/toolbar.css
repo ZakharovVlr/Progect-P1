@@ -25,6 +25,7 @@
     align-items: center;
     width: 100%;
     justify-self: center;
+    gap: clamp(16px, 3vw, 48px);
 }
 
 .tool-btn {

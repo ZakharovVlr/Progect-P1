@@ -7,7 +7,8 @@ const FilterEngine = (function () {
         invert: Filters.invert,
         sepia: Filters.sepia,
         posterize: Filters.posterize,
-        duotone: Filters.duotone
+        duotone: Filters.duotone,
+        'duotone-green': Filters['duotone-green']
     };
 
     function render(ctx, canvas, image, draw, filterName) {

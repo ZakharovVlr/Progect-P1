@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const historyControls = document.getElementById('historyControls');
     const undoBtn = document.getElementById('undoBtn');
     const redoBtn = document.getElementById('redoBtn');
-    
+
     // Находим новые элементы текстового меню
     const textMenu = document.getElementById('textMenu');
     const textMenuClose = document.getElementById('textMenuClose');
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Контекст canvas не получен');
         return;
     }
+
     // 1
     // 1
     // 1
@@ -167,9 +168,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     filterButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
             const filterName = btn.dataset.filter;
-            FilterEngine.render(ctx, canvas, currentImage, currentDraw, filterName);
+
+            // Лоадер показывается на всё время обработки, но не менее
+            // Loader.MIN_DISPLAY_MS, даже если конкретный фильтр отрабатывает быстрее.
+            // Передаём именно canvas — так затемнение ляжет строго на область фото.
+            await window.Loader.wrap(canvas, () => {
+                FilterEngine.render(ctx, canvas, currentImage, currentDraw, filterName);
+            });
+
             setActiveFilterButton(filterName);
             pushHistory(filterName);
         });

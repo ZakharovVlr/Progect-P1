@@ -55,7 +55,7 @@ body {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 3px solid var(--color-text-main);
+    border-right: 7px solid var(--color-text-main);
     animation:
         typing 4s steps(7, end) forwards,
         blink-caret 0.65s step-end 10 forwards;
@@ -118,12 +118,13 @@ body {
 /* 3. Основной контейнер (Розовая подложка) */
 .canvas-zone {
     display: grid;
-    grid-template-rows: min-content min-content min-content;
+    grid-template-rows: repeat(3, min-content) auto;
     align-self: center;
     justify-self: center;
     width: 100%;
     max-width: 1300px;
-    min-height: 60vh;
+    height: auto;
+    min-height: auto;
     padding: 20px;
     background: var(--color-canvas);
 }

@@ -3,21 +3,27 @@
     display: flex;
     justify-self: center;
     align-self: flex-start;
+    margin-top: 12px;
     flex-direction: column;
-    gap: 16px;
     width: 100%;
-    max-width: 630px;
-    padding: 8px 3px;
+    max-width: 700px;
+    min-height: auto;
+    background: #191919;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 0 1px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     min-width: 0;
+}
+.filters-menu__header {
+    display: flex;
+    justify-content: flex-end;
+    /* Выравнивает содержимое по правому краю */
+    width: 100%;
 }
 
 .filters-menu.is-hidden {
     display: none;
-}
-
-.filters-menu__header {
-    display: flex;
-    justify-content: flex-end;
 }
 
 .filters-menu__list {
@@ -25,58 +31,98 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: flex-start;
-    gap: 21px;
-    padding: 4px 4px 12px;
+    gap: 14px;
+    /* Чуть плотнее, как в интерфейсах приложений */
+    padding: 4px 4px 8px;
     -webkit-overflow-scrolling: touch;
-    /* плавный скролл на iOS */
-    scrollbar-width: thin;
-    /* тонкий скроллбар в Firefox */
     min-width: 0;
 }
 
+/* Стилизация скроллбара под Claude (минималистичный темный ползунок) */
+.filters-menu__list::-webkit-scrollbar {
+    height: 4px;
+}
+
+.filters-menu__list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filters-menu__list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0px;
+}
+
+.filters-menu__list {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* Карточка кнопки-фильтра */
 .filter-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    width: 64px;
-    /* фиксируем ширину — равна ширине превью */
-    flex: 0 0 64px;
-    /* кнопка не растягивается и не сжимается */
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: var(--color-text-main);
+    gap: 10px;
+    width: 96px;
+    /* Увеличили с 76px под новую ширину картинок */
+    flex: 0 0 96px;
+    /* Запрещаем сжатие карточки */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    padding: 10px 8px;
+    /* Немного увеличили внутренние отступы */
+    color: #E2E8F0;
     font-family: 'Noto Serif', sans-serif;
-    font-size: 14px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Эффект наведения в стиле Claude: карточка плавно подсвечивается изнутри */
 .filter-btn:hover {
-    transform: scale(1.07);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    /* Аккуратный подъем вместо грубого масштабирования */
 }
 
+/* Сама мини-картинка внутри кнопки */
 .filter-btn__thumb {
     display: block;
-    width: 100%;
-    min-width: 64px;
-    min-height: 64px;
+    width: 80px;
+    /* Увеличили с 60px */
+    height: 80px;
+    /* Увеличили с 60px */
     aspect-ratio: 1 / 1;
-    background-color: var(--color-canvas);
+    border-radius: 4px;
+    /* Легкое аккуратное скругление картинок как в Claude */
+    background-color: #111;
     background-size: cover;
     background-position: center;
-    border: 2px solid transparent;
-    transition: border-color 0.15s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
 }
 
-.filter-btn.is-active .filter-btn__thumb {
-    border-color: var(--color-text-main);
+/* Активный выбранный фильтр: яркая белая или цветная неоновая рамка карточки */
+.filter-btn.is-active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFFFFF;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
 }
 
+/* Подпись под картинкой */
 .filter-btn__label {
-    font-size: 12px;
-    font-family: 'Noto Serif', sans-serif;
-    color: var(--color-text-main);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: #94A3B8;
+    /* Приглушенный серый текст */
     white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.filter-btn:hover .filter-btn__label,
+.filter-btn.is-active .filter-btn__label {
+    color: #FFFFFF;
+    /* При наведении и активности текст загорается белым */
 }
