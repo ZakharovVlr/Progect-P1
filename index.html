@@ -276,27 +276,35 @@
             </div>
         </div>
         <!-- экспериментальное меню для кисти -->
-        <div id="brushMenu" class="brush-menu is-hidden" role="region" aria-label="Настройки кисти">
-            <div class="brush-menu__panel">
-                <button type="button" class="menu__close_button" id="buttonMenuClose" aria-label="Закрыть меню фильтров">
-                    <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
-                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                    </svg>
-                </button>
-                <div class="brush-menu__color-row">
-                    <span class="brush-menu__color-swatch" id="brushColorSwatch"></span>
-                    <span class="brush-menu__color-hex" id="brushColorHex">2600FF</span>
-                    <span class="brush-menu__opacity-value" id="brushOpacityValue">100%</span>
-                </div>
-                <div class="brush-menu__size-row">
-                    <input type="range" id="brushSizeSlider" class="brush-menu__slider" min="1" max="100" value="51">
-                    <span class="brush-menu__size-value" id="brushSizeValue">51</span>
-                </div>
-            </div>
-            <div class="brush-menu__preview">
-                <canvas id="brushPreviewCanvas" width="180" height="180"></canvas>
-            </div>
+<!-- Меню кисти (изначально скрыто классом is-hidden) -->
+<div id="brushMenu" class="brush-menu is-hidden" role="region" aria-label="Настройки кисти">
+    <div class="brush-menu__panel">
+        <button type="button" class="menu__close_button" id="buttonMenuClose" aria-label="Закрыть меню кисти">
+            <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
+                <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg>
+        </button>
+
+        <div class="brush-menu__color-row">
+            <label class="brush-menu__color-swatch-wrapper" for="brushColorPicker">
+                <span class="brush-menu__color-swatch" id="brushColorSwatch"></span>
+                <input type="color" id="brushColorPicker" class="brush-menu__color-input" value="#2600FF">
+            </label>
+            <span class="brush-menu__color-hex" id="brushColorHex">2600FF</span>
+            <span class="brush-menu__opacity-value" id="brushOpacityValue">100%</span>
         </div>
+
+        <div class="brush-menu__size-row">
+            <input type="range" id="brushSizeSlider" class="brush-menu__slider" min="1" max="100" value="51">
+            <span class="brush-menu__size-value" id="brushSizeValue">51</span>
+        </div>
+    </div>
+
+    <div class="brush-menu__preview">
+        <canvas id="brushPreviewCanvas" width="180" height="180"></canvas>
+    </div>
+</div>
 
     </main>
 

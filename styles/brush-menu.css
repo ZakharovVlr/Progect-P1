@@ -50,6 +50,23 @@
     border-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Обёртка вокруг свотча — сам <label for="brushColorPicker">.
+   flex-shrink: 0 повторяет поведение исходного .brush-menu__color-swatch,
+   чтобы добавление обёртки не повлияло на раскладку строки. */
+.brush-menu__color-swatch-wrapper {
+    display: inline-flex;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    /* Лёгкая обводка при фокусе с клавиатуры (Tab) — свотч теперь
+       интерактивный элемент, доступность не должна теряться. */
+    outline-offset: 2px;
+}
+
+.brush-menu__color-swatch-wrapper:has(:focus-visible) {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+}
+
 .brush-menu__color-swatch {
     width: 28px;
     height: 28px;
@@ -57,6 +74,27 @@
     background: #2600ff;
     border: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 0;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.brush-menu__color-swatch-wrapper:hover .brush-menu__color-swatch {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* Сам нативный <input type="color"> — визуально скрыт, но не display:none,
+   иначе в части браузеров клик по связанному <label> не откроет
+   системный color picker. */
+.brush-menu__color-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .brush-menu__color-hex {

@@ -215,38 +215,93 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const sizeSlider = document.getElementById('brushSizeSlider');
     let isDrawing = false;
-    let lastX = 0;
-    let lastY = 0;
+    let strokePoints = [];
 
-    canvas.addEventListener('mousedown', (event) => {
-        event.preventDefault(); // добавь эту строку
-        console.log('mousedown сработал');
-        isDrawing = true;
+    // Флаг: был ли реально нарисован штрих в текущем "нажатии".
+    // Просто клик без движения не должен создавать пустую запись в истории.
+    let strokeHasChanges = false;
+
+    // Переводит координаты события (мышь/тач/перо — Pointer Events единые
+    // для всех устройств) в координаты внутренней системы canvas.
+    //
+    // Без этого пересчёта, если CSS-размер canvas (getBoundingClientRect())
+    // отличается от его реального width/height — а это обычная ситуация,
+    // когда canvas растянут/сжат стилями под макет — рисование "уезжает"
+    // от курсора, и чем дальше от левого верхнего угла, тем сильнее
+    // расхождение. Именно это давало эффект "начинается выше и левее".
+    function getCanvasPoint(event) {
         const rect = canvas.getBoundingClientRect();
-        lastX = event.clientX - rect.left;
-        lastY = event.clientY - rect.top;
-    }); // нажали кнопку мыши
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
 
-    canvas.addEventListener('mousemove', (event) => {
-        console.log('mousemove, isDrawing =', isDrawing);
+        return {
+            x: (event.clientX - rect.left) * scaleX,
+            y: (event.clientY - rect.top) * scaleY
+        };
+    }
+
+    canvas.addEventListener('pointerdown', (event) => {
+        if (!hasPhoto) return;
+
+        event.preventDefault();
+        // Pointer Capture: canvas продолжит получать pointermove/pointerup
+        // даже если палец/курсор уйдёт за его границы посреди штриха —
+        // штрих не обрывается на полпути, а корректно завершается там,
+        // где реально отпустили кнопку/палец.
+        canvas.setPointerCapture(event.pointerId);
+
+        isDrawing = true;
+        strokeHasChanges = false;
+        strokePoints = [getCanvasPoint(event)];
+    }); // нажали кнопку мыши / коснулись пальцем / пером
+
+    canvas.addEventListener('pointermove', (event) => {
         if (!isDrawing) return; // если не рисуем — вообще ничего не делаем, выходим сразу
 
-        const rect = canvas.getBoundingClientRect(); // получаем rect ЗДЕСЬ, в этом обработчике
-        const currentX = event.clientX - rect.left; // текущая точка мыши
-        const currentY = event.clientY - rect.top;
+        event.preventDefault();
+        strokePoints.push(getCanvasPoint(event));
 
-        ctx.beginPath();
-        ctx.moveTo(lastX, lastY);     // начинаем линию от СТАРОЙ точки
-        ctx.lineTo(currentX, currentY); // ведём линию до НОВОЙ точки
-        ctx.strokeStyle = '#2600FF';
-        ctx.lineWidth = sizeSlider.value;
-        ctx.lineJoin = 'round'; // скругляет углы между соединёнными сегментами линии
-        ctx.lineCap = 'round';  // скругляет концы каждого отдельного штриха
-        ctx.stroke();
+        // Более продвинутый метод рисования: вместо прямых отрезков между
+        // редкими точками pointermove проводим квадратичную кривую Безье
+        // через середины соседних точек. Это сглаживает "угловатость"
+        // линии, особенно заметную при быстром движении, когда браузер
+        // успевает прислать мало промежуточных точек.
+        if (strokePoints.length > 2) {
+            const [p0, p1, p2] = strokePoints.slice(-3);
 
-        lastX = currentX; // теперь обновляем — новая точка становится "старой" для следующего шага
-        lastY = currentY;
-    }); // двигаем мышь (срабатывает постоянно, даже без рисования!)
+            const midPoint1 = { x: (p0.x + p1.x) / 2, y: (p0.y + p1.y) / 2 };
+            const midPoint2 = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
 
-    canvas.addEventListener('mouseup', (event) => { isDrawing = false });   // отпустили кнопку мыши
+            ctx.beginPath();
+            ctx.moveTo(midPoint1.x, midPoint1.y);
+            ctx.quadraticCurveTo(p1.x, p1.y, midPoint2.x, midPoint2.y); // p1 — контрольная точка кривой
+            // Цвет читаем из общих настроек кисти (задаются в меню кисти,
+            // brush-menu.js) — если по какой-то причине меню ещё не
+            // инициализировалось, используем тот же цвет, что был по умолчанию.
+            ctx.strokeStyle = window.BrushSettings ? window.BrushSettings.color : '#2600FF';
+            ctx.lineWidth = sizeSlider.value;
+            ctx.lineJoin = 'round'; // скругляет углы между соединёнными сегментами линии
+            ctx.lineCap = 'round';  // скругляет концы каждого отдельного штриха
+            ctx.stroke();
+        }
+
+        strokeHasChanges = true;
+    }); // двигаем указатель (срабатывает постоянно, даже без рисования!)
+
+    function finishStroke() {
+        if (!isDrawing) return;
+        isDrawing = false;
+        strokePoints = [];
+
+        if (!strokeHasChanges) return;
+
+        // Записываем штрих в историю с тем же именем фильтра, что было
+        // у предыдущего состояния — рисование кистью не меняет выбранный
+        // фильтр, поэтому подсветка кнопки фильтра должна остаться прежней.
+        pushHistory(historyStack[historyIndex]?.filterName || 'none');
+        strokeHasChanges = false;
+    }
+
+    canvas.addEventListener('pointerup', finishStroke);   // отпустили кнопку/палец
+    canvas.addEventListener('pointercancel', finishStroke); // системный жест прервал ввод (например, свайп смены приложений на телефоне)
 });
