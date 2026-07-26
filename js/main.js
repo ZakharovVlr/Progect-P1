@@ -174,13 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-   
-    //filtersMenuClose.addEventListener('click', () => {
-       // filtersMenu.classList.add('is-hidden');
-       // toolbarsWrapper.classList.remove('is-hidden');
-       // filtersBtn.setAttribute('aria-expanded', 'false');
-   // });
-
     filterButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {
             const filterName = btn.dataset.filter;
@@ -219,4 +212,10 @@ document.addEventListener('DOMContentLoaded', function () {
         // Вызываем метод из нашего модуля
         window.TextTool.addDefaultText(currentBaseSnapshot);
     });
+
+    canvas.addEventListener('mousedown', (event) => {}); // нажали кнопку мыши
+    canvas.addEventListener('mousemove', (event) => {}); // двигаем мышь (срабатывает постоянно, даже без рисования!)
+    canvas.addEventListener('mouseup', (event) => {});   // отпустили кнопку мыши
+
+
 });

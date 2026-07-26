@@ -95,14 +95,18 @@
 
 /* Круглое превью — тот же принцип аккуратного скругления, что у .filter-btn__thumb */
 .brush-menu__preview {
-    width: clamp(70px, 20vw, 120px);
-    height: clamp(70px, 20vw, 120px);
+    width: clamp(70px, 20vw, 180px);
+    height: clamp(70px, 20vw, 180px);
     border-radius: 50%;
     background: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.1);
     flex-shrink: 1;
     overflow: hidden;
     transition: all 0.2s ease;
+}
+
+.brush-menu__preview canvas {
+    display: block;
 }
 
 .brush-menu__preview:hover {
