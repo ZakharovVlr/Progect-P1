@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
         toolbarsWrapper.classList.add('is-hidden');
         brushMenu.classList.toggle('is-hidden');
         brush.setAttribute('aria-expanded', 'true');
+
+    
 });
     
 });

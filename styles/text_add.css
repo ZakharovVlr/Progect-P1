@@ -32,23 +32,6 @@
     /* Небольшая компенсация отступа */
 }
 
-/* Кнопка закрытия (крестик) */
-.menu__close_button {
-    background: none;
-    border: none;
-    color: #666666;
-    /* Цвет стрелочки из .icon-arrow */
-    cursor: pointer;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.15s ease;
-}
-
-.menu__close_button:hover {
-    color: #ffffff;
-}
 
 /* Список полей (выстраиваем элементы в ряд) */
 .text-menu__list {
