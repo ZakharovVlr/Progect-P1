@@ -213,9 +213,40 @@ document.addEventListener('DOMContentLoaded', function () {
         window.TextTool.addDefaultText(currentBaseSnapshot);
     });
 
-    canvas.addEventListener('mousedown', (event) => {}); // нажали кнопку мыши
-    canvas.addEventListener('mousemove', (event) => {}); // двигаем мышь (срабатывает постоянно, даже без рисования!)
-    canvas.addEventListener('mouseup', (event) => {});   // отпустили кнопку мыши
+    const sizeSlider = document.getElementById('brushSizeSlider');
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
 
+    canvas.addEventListener('mousedown', (event) => {
+        event.preventDefault(); // добавь эту строку
+        console.log('mousedown сработал');
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        lastX = event.clientX - rect.left;
+        lastY = event.clientY - rect.top;
+    }); // нажали кнопку мыши
 
+    canvas.addEventListener('mousemove', (event) => {
+        console.log('mousemove, isDrawing =', isDrawing);
+        if (!isDrawing) return; // если не рисуем — вообще ничего не делаем, выходим сразу
+
+        const rect = canvas.getBoundingClientRect(); // получаем rect ЗДЕСЬ, в этом обработчике
+        const currentX = event.clientX - rect.left; // текущая точка мыши
+        const currentY = event.clientY - rect.top;
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);     // начинаем линию от СТАРОЙ точки
+        ctx.lineTo(currentX, currentY); // ведём линию до НОВОЙ точки
+        ctx.strokeStyle = '#2600FF';
+        ctx.lineWidth = sizeSlider.value;
+        ctx.lineJoin = 'round'; // скругляет углы между соединёнными сегментами линии
+        ctx.lineCap = 'round';  // скругляет концы каждого отдельного штриха
+        ctx.stroke();
+
+        lastX = currentX; // теперь обновляем — новая точка становится "старой" для следующего шага
+        lastY = currentY;
+    }); // двигаем мышь (срабатывает постоянно, даже без рисования!)
+
+    canvas.addEventListener('mouseup', (event) => { isDrawing = false });   // отпустили кнопку мыши
 });
