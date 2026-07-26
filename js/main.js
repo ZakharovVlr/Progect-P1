@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const toolbarsWrapper = document.getElementById('toolbarsWrapper');
     const filtersBtn = document.getElementById('filtersBtn');
     const filtersMenu = document.getElementById('filtersMenu');
-    const filtersMenuClose = document.getElementById('filtersMenuClose');
+    const buttonMenuClose = document.getElementById('buttonMenuClose');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const historyControls = document.getElementById('historyControls');
     const undoBtn = document.getElementById('undoBtn');
     const redoBtn = document.getElementById('redoBtn');
+
 
     // Находим новые элементы текстового меню
     const textMenu = document.getElementById('textMenu');
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Допишите новые переменные в ваше существующее условие if, чтобы JS не падал, если их нет в HTML
     if (!canvas || !fileInput || !previewBlock || !editorBlock || !uploadZone
-        || !toolbarsWrapper || !filtersBtn || !filtersMenu || !filtersMenuClose
+        || !toolbarsWrapper || !filtersBtn || !filtersMenu || !buttonMenuClose
         || !historyControls || !undoBtn || !redoBtn
         || !textMenu || !textMenuClose || !textInput || !fontSelect || !sizeInput || !colorInput) {
         console.error('Не найдены все элементы. Проверьте id в HTML.');
@@ -161,11 +162,24 @@ document.addEventListener('DOMContentLoaded', function () {
         filtersBtn.setAttribute('aria-expanded', 'true');
     });
 
-    filtersMenuClose.addEventListener('click', () => {
-        filtersMenu.classList.add('is-hidden');
-        toolbarsWrapper.classList.remove('is-hidden');
-        filtersBtn.setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.menu__close_button').forEach((closeBtn) => {
+        closeBtn.addEventListener('click', () => {
+            const menu = closeBtn.closest('[role="region"]'); // или другой общий признак меню
+            if (menu) {
+                menu.classList.add('is-hidden');
+            }
+            toolbarsWrapper.classList.remove('is-hidden');
+            const triggerBtn = document.querySelector(`[aria-controls="${menu.id}"]`);
+            triggerBtn.setAttribute('aria-expanded', 'false');
+        });
     });
+
+   
+    //filtersMenuClose.addEventListener('click', () => {
+       // filtersMenu.classList.add('is-hidden');
+       // toolbarsWrapper.classList.remove('is-hidden');
+       // filtersBtn.setAttribute('aria-expanded', 'false');
+   // });
 
     filterButtons.forEach((btn) => {
         btn.addEventListener('click', async () => {

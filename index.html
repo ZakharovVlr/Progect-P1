@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="styles/undo-redo.css">
     <link rel="stylesheet" href="styles/toolbar.css">
     <link rel="stylesheet" href="styles/filters.css">
+    <link rel="stylesheet" href="styles/brush-menu.css">
     <link rel="stylesheet" href="styles/buttons.css">
     <link rel="stylesheet" href="styles/modal-window.css">
     <link rel="stylesheet" href="styles/footer-style.css">
@@ -135,7 +136,7 @@
         <!-- Панель инструментов с иконками (верхняя) -->
         <div class="toolbars-wrapper is-hidden" id="toolbarsWrapper">
             <div class="toolbar toolbar--icons" role="toolbar" aria-label="Инструменты редактирования">
-                <button type="button" class="tool-btn" id="btn-add-text" aria-label="Текст">
+                <button type="button" class="tool-btn" id="btn-add-text" aria-label="Текст" aria-controls="textMenu">
                     <svg height="32px" width="32px" aria-hidden="true">
                         <use href="./svg/text-format.svg" />
                     </svg>
@@ -148,13 +149,15 @@
                     </svg>
                     <span class="text-button">Фильтры</span>
                 </button>
-                <button type="button" class="tool-btn" aria-label="Кадрировать">
+                <button type="button" class="tool-btn" id="cropBtn" aria-label="Кадрировать" aria-controls="filtersMenu" 
+                aria-expanded="false">
                     <svg height="32px" width="32px" aria-hidden="true">
                         <use href="./svg/crop.svg" />
                     </svg>
                     <span class="text-button">Кадрировать</span>
                 </button>
-                <button type="button" class="tool-btn" aria-label="Кисть">
+                <button type="button" class="tool-btn" id="btn-brush" aria-label="Кисть" aria-controls="brushMenu" 
+                aria-expanded="false">
                     <svg height="32px" width="32px" aria-hidden="true">
                         <use href="./svg/brush.svg" />
                     </svg>
@@ -223,7 +226,7 @@
 
         <div class="filters-menu is-hidden" id="filtersMenu" role="region" aria-label="Меню фильтров">
             <div class="filters-menu__header">
-                <button type="button" class="menu__close_button" id="filtersMenuClose"
+                <button type="button" class="menu__close_button" id="buttonMenuClose"
                     aria-label="Закрыть меню фильтров">
                     <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
                         <path
@@ -270,6 +273,28 @@
                 </button>
                 
 
+            </div>
+        </div>
+        <!-- экспериментальное меню для кисти -->
+        <div id="brushMenu" class="brush-menu is-hidden" role="region" aria-label="Настройки кисти">
+            <div class="brush-menu__panel">
+                <button type="button" class="menu__close_button" id="buttonMenuClose" aria-label="Закрыть меню фильтров">
+                    <svg height="32px" width="32px" viewBox="0 -960 960 960" fill="currentColor">
+                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg>
+                </button>
+                <div class="brush-menu__color-row">
+                    <span class="brush-menu__color-swatch" id="brushColorSwatch"></span>
+                    <span class="brush-menu__color-hex" id="brushColorHex">2600FF</span>
+                    <span class="brush-menu__opacity-value" id="brushOpacityValue">100%</span>
+                </div>
+                <div class="brush-menu__size-row">
+                    <input type="range" id="brushSizeSlider" class="brush-menu__slider" min="1" max="100" value="51">
+                    <span class="brush-menu__size-value" id="brushSizeValue">51</span>
+                </div>
+            </div>
+            <div class="brush-menu__preview">
+                <canvas id="brushPreviewCanvas" width="180" height="180"></canvas>
             </div>
         </div>
 
@@ -337,6 +362,7 @@
     <script src="js/filter-previews.js" defer></script>
     <script src="js/text-tool.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/brush-menu.js" defer></script>
     <script src="js/theme.js" defer></script>
 
 </body>
